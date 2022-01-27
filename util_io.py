@@ -1,5 +1,7 @@
 import inquirer
 from colorama import Fore
+import time
+from inquirer.themes import GreenPassion
 
 def chooseList(question: str, choices) -> str:
   return inquirer.prompt([
@@ -7,7 +9,7 @@ def chooseList(question: str, choices) -> str:
     message = question,
     choices = choices,
     carousel = True)
-  ])[""]
+  ], theme=GreenPassion())[""]
 
 def progressBar(label: str, stat: int, max: int, color_inner, color_outer, color_contrast):
   """
@@ -31,3 +33,7 @@ def progressBar(label: str, stat: int, max: int, color_inner, color_outer, color
     + Fore.BLUE +
     str(stat) + "/" + str(max)
   ))
+
+def say(*args):
+  print(*args)
+  time.sleep(0.5)

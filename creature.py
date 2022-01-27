@@ -13,8 +13,8 @@ class Creature(Fightable):
     )
 
     io.progressBar('Energy',
-      stat = self.health,
-      max = self.max_health,
+      stat = self.energy,
+      max = self.max_energy,
       color_inner = Fore.LIGHTGREEN_EX,
       color_outer = Fore.BLUE,
       color_contrast = Fore.GREEN
