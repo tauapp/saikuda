@@ -13,6 +13,5 @@ player = Creature("Animal", 100, 100, 0, 5, [
   )
 ])
 player.report()
-att = player.chooseAttack()
-player.attack(att)
+player.chooseAttack()
 player.report()
