@@ -25,5 +25,5 @@ class Creature(Fightable):
       x.name + " " + Fore.RED + str(x.intensity) + Fore.WHITE + "/" + Fore.BLUE + str(x.cost)
       for x in self.attack_list
     ]
-    choice = " ".join(io.chooseList("Choose an attack!", choices).split(" ")[:-1])
+    choice = " ".join(io.chooseList("Choose an attack", choices).split(" ")[:-1])
     return self.attack(lookup.index(choice))

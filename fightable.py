@@ -1,5 +1,6 @@
 import util_io as io
 from colorama import Fore
+import random
 
 class Fightable:
 
@@ -23,9 +24,17 @@ class Fightable:
     def attack(self, index):
       #Attack being done
       att = self.attack_list[index]
+      if att.cost > self.energy:
+        io.say(self.name, "tried to attack, but it was too tired!")
+        return 0
       self.energy -= att.cost
-      io.say(self.name, "performed", att.name + "!")
+      io.say(self.name, "used", att.name + "!")
       return att.intensity * self.attack_str
+
+    def chooseRandomAttack(self):
+      att = random.randint(0, len(self.attack_list) - 1)
+      self.attack(att)
+      return self.attack_list[att].intensity * self.attack_str
 
     def __init__(self, name, max_health, max_energy, defense, attack, attack_list):
         self.name = name
