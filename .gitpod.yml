@@ -3,7 +3,7 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - command: python main.py
+  - init: sh setup.sh
 vscode:
   extensions:
     - ms-python.python

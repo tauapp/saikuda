@@ -7,19 +7,34 @@ from battle import Battle
 
 init(autoreset = True)
 
-player = Creature("You", 100, 100, 0, 5, [
+player = Creature("You", 500, 100, 10, 5, [
   Attack(
-    "Tackle",
+    "Beam",
+    5,
+    5
+  ),
+  Attack(
+    "Energy Ball",
     10,
-    30
+    20
+  ),
+  Attack(
+    "Plasma Beam",
+    100,
+    75
   )
 ])
 
-animal = Fightable("Bear", 100, 100, 0, 5, [
+animal = Fightable("Bear", 1000, 100, 20, 10, [
   Attack(
     "Scratch",
     10,
-    30
+    5
+  ),
+  Attack(
+    "Crushing Swipe",
+    40,
+    25
   )
 ])
 
