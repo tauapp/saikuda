@@ -34,3 +34,9 @@ def progressBar(label: str, stat: int, max: int, color_inner,):
 def say(*args):
   print(*args)
   time.sleep(0.5)
+
+#Narrate
+def narr(*args):
+  print(*args)
+  letters = len(" ".join(args))
+  time.sleep(letters/25)
