@@ -8,21 +8,23 @@ from item import Item
 
 init(autoreset = True)
 
+
+
 #Shared item list making use of Python's Pass-by-reference
 items = [
   Item(
     "Donut",
-    50,
-    50
+    100,
+    250
   ),
   Item(
-    "Donut",
-    50,
-    50
+    "Steak",
+    2500,
+    100
   )
 ]
 
-players = [Creature("You", 10000, 1000, 100, 50, [
+players = [Creature("You", 10000, 1000, 750, 50, [
   Attack(
     "Beam",
     10,
@@ -39,7 +41,7 @@ players = [Creature("You", 10000, 1000, 100, 50, [
     250
   )
 ], items),
-Creature("Cat", 5000, 500, 50, 100, [
+Creature("Cat", 5000, 500, 50, 50, [
   Attack(
     "Scratch",
     10,
@@ -48,7 +50,7 @@ Creature("Cat", 5000, 500, 50, 100, [
   Attack(
     "Flurry",
     50,
-    50
+    40
   ),
   Attack(
     "Nine Lives",
@@ -57,7 +59,7 @@ Creature("Cat", 5000, 500, 50, 100, [
   )
 ], items)]
 
-animal = Fightable("Bear", 100000, 100, 100, 25, [
+animal = Fightable("Bear", 50000, 1000, 300, 100, [
   Attack(
     "Scratch",
     10,
@@ -66,7 +68,7 @@ animal = Fightable("Bear", 100000, 100, 100, 25, [
   Attack(
     "Crushing Swipe",
     40,
-    25
+    250
   )
 ] , [])
 

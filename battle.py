@@ -55,7 +55,7 @@ class Battle:
         else:
             print("")
             self.protag.report()
-            print(Fore.RED + self.protag.name + "died!")
+            print(Fore.RED + self.protag.name + " died!")
             self.protaglist.pop(self.protagID)
             if self.protag.name != "You":
                 self.setProtag()

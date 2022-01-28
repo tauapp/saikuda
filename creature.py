@@ -41,8 +41,7 @@ class Creature(Fightable):
       "Defend",
       "Item",
       "Rest",
-      "Switch Creature",
-      "Spare"
+      "Switch Creature"
     ])
     if choice == "Fight":
       return self.chooseAttack()
@@ -65,8 +64,6 @@ class Creature(Fightable):
     elif choice == "Switch Creature":
       return (2, 0)
     else:
-      #TODO
-      io.say("The enemy doesn't want to be spared!")
       return (False, 0)
     
   def chooseItem(self):
