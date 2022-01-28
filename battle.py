@@ -19,6 +19,7 @@ class Battle:
 
     def start(self):
         io.say("The battle begins!")
+        os.system("clear")
         self.antag.enemy_report()
         print("")
         self.protag.report()
