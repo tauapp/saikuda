@@ -16,7 +16,21 @@ class Creature(Fightable):
       color_inner = Fore.BLUE,
     )
 
+  reduceDefense = False
+
   def chooseAction(self):
+
+    #If the user defended last round, remove the defense
+    if self.reduceDefense:
+      self.defense /= 3
+      self.defense = round(self.defense)
+      self.reduceDefense = False
+
+    pronoun = tuple()
+    if self.name == "You":
+      pronoun = ("You", "your")
+    else:
+      pronoun = (self.name, "its")
     choice = io.chooseList("Choose an action:", [
       "Fight",
       "Defend",
@@ -24,7 +38,41 @@ class Creature(Fightable):
       "Rest",
       "Spare"
     ])
-    if choice == "Fight"
+    if choice == "Fight":
+      return self.chooseAttack()
+    elif choice == "Defend":
+      self.defense *= 3
+      io.say(pronoun[0], "defended, tripling", pronoun[1] + " " + Fore.GREEN + "DEFENSE" + Style.RESET_ALL + "!")
+      self.reduceDefense = True
+      return (False, 0)
+    elif choice == "Item":
+      self.chooseItem()
+      return (False, 0)
+    elif choice == "Rest":
+      self.energy += (self.max_energy * 0.2)
+      self.energy = min(round(self.energy), self.max_energy)
+      io.say(pronoun[0], "rested and recovered 20% of", pronoun[1], "energy!")
+      return (False, 0)
+    else:
+      #TODO
+      io.say("The enemy doesn't want to be spared!")
+      return (False, 0)
+    
+  def chooseItem(self):
+    lookup = [x.name for x in self.items]
+    choices = [
+      x.name + " " + Fore.RED + str(x.health) + Style.RESET_ALL + "/" + Fore.BLUE + str(x.energy)
+      for x in self.items
+    ]
+    choice = lookup.index(" ".join(io.chooseList("Choose an item", choices).split(" ")[:-1]))
+    item = self.items[choice]
+    self.health += item.health
+    self.health = min(self.health, self.max_health)
+    self.energy += item.energy
+    self.energy = min(self.energy, self.max_energy)
+    io.say("You used the", item.name + ".", "You restored", item.health, "health and", item.energy, "energy!")
+    self.items.pop(choice)
+    return
 
   #Choose an attack to execute
   def chooseAttack(self):

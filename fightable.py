@@ -20,6 +20,8 @@ class Fightable:
 
     max_energy = 100
 
+    items = []
+
     #Perform an Attack and deduct from energy
     def attack(self, index):
       #Attack being done
@@ -32,8 +34,14 @@ class Fightable:
       io.say(self.name, "used", Fore.GREEN + att.name + Style.RESET_ALL + "!")
       return (True, att.intensity * self.attack_str)
 
-    def chooseRandomAttack(self):
+    def chooseRandomAction(self):
       att = random.randint(0, len(self.attack_list) - 1)
+      cost = self.attack_list[att].cost
+      if cost > self.energy:
+        self.energy += (self.max_energy * 0.2)
+        self.energy = min(round(self.energy), self.max_energy)
+        io.say(self.name + " rested and recovered 20% of its energy!")
+        return (False, 0)
       return self.attack(att)
 
     def enemy_report(self):
@@ -43,7 +51,7 @@ class Fightable:
       color_inner = Fore.GREEN,
     )
 
-    def __init__(self, name, max_health, max_energy, defense, attack, attack_list):
+    def __init__(self, name, max_health, max_energy, defense, attack, attack_list, items):
         self.name = name
         self.health = max_health
         self.max_health = max_health
@@ -52,3 +60,4 @@ class Fightable:
         self.attack_list = attack_list
         self.energy = max_energy
         self.max_energy = max_energy
+        self.items = items

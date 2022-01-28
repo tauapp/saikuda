@@ -14,7 +14,7 @@ class Battle:
         print("")
         self.protag.report()
         while True:
-            choice = self.protag.chooseAttack()
+            choice = self.protag.chooseAction()
             dmg = (choice[0], max(0, choice[1] - self.antag.defense))
             #Check if the action type is attack
             if dmg[0]:
@@ -24,7 +24,7 @@ class Battle:
                 self.antag.health = 0
                 break
             print("")
-            choice = self.antag.chooseRandomAttack()
+            choice = self.antag.chooseRandomAction()
             dmg = (choice[0], max(0, choice[1] - self.protag.defense))
             if dmg[0]:
                 io.say("It did " + Fore.RED + str(dmg[1]) + Style.RESET_ALL + " damage!")

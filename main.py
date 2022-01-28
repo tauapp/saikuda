@@ -4,10 +4,11 @@ from creature import Creature
 from attack import Attack
 from fightable import Fightable
 from battle import Battle
+from item import Item
 
 init(autoreset = True)
 
-player = Creature("You", 10000, 1000, 10, 50, [
+player = Creature("You", 10000, 1000, 100, 50, [
   Attack(
     "Beam",
     1,
@@ -23,9 +24,20 @@ player = Creature("You", 10000, 1000, 10, 50, [
     100,
     75
   )
+], [
+  Item(
+    "Donut",
+    50,
+    50
+  ),
+  Item(
+    "Donut",
+    50,
+    50
+  )
 ])
 
-animal = Fightable("Bear", 100000, 100, 20, 25, [
+animal = Fightable("Bear", 100000, 100, 100, 25, [
   Attack(
     "Scratch",
     10,
