@@ -8,6 +8,7 @@ from item import Item
 
 init(autoreset = True)
 
+#Shared item list making use of Python's Pass-by-reference
 items = [
   Item(
     "Donut",
