@@ -16,6 +16,16 @@ class Creature(Fightable):
       color_inner = Fore.BLUE,
     )
 
+  def chooseAction(self):
+    choice = io.chooseList("Choose an action:", [
+      "Fight",
+      "Defend",
+      "Item",
+      "Rest",
+      "Spare"
+    ])
+    if choice == "Fight"
+
   #Choose an attack to execute
   def chooseAttack(self):
     lookup = [x.name for x in self.attack_list]

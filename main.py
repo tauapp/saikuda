@@ -7,10 +7,10 @@ from battle import Battle
 
 init(autoreset = True)
 
-player = Creature("You", 500, 100, 10, 5, [
+player = Creature("You", 10000, 1000, 10, 50, [
   Attack(
     "Beam",
-    5,
+    1,
     5
   ),
   Attack(
@@ -25,7 +25,7 @@ player = Creature("You", 500, 100, 10, 5, [
   )
 ])
 
-animal = Fightable("Bear", 1000, 100, 20, 10, [
+animal = Fightable("Bear", 100000, 100, 20, 25, [
   Attack(
     "Scratch",
     10,

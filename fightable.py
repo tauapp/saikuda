@@ -25,17 +25,16 @@ class Fightable:
       #Attack being done
       att = self.attack_list[index]
       if att.cost > self.energy:
-        pronoun = "it was" if self.name != "You" else "You were"
+        pronoun = "it was" if self.name != "You" else "you were"
         io.say(self.name, "tried to attack, but", pronoun, "too tired!")
-        return 0
+        return (False, 0)
       self.energy -= att.cost
       io.say(self.name, "used", Fore.GREEN + att.name + Style.RESET_ALL + "!")
-      return att.intensity * self.attack_str
+      return (True, att.intensity * self.attack_str)
 
     def chooseRandomAttack(self):
       att = random.randint(0, len(self.attack_list) - 1)
-      self.attack(att)
-      return self.attack_list[att].intensity * self.attack_str
+      return self.attack(att)
 
     def enemy_report(self):
       io.progressBar('Enemy HP',

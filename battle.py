@@ -14,16 +14,21 @@ class Battle:
         print("")
         self.protag.report()
         while True:
-            dmg = abs(self.protag.chooseAttack() - self.antag.defense)
-            io.say("It did " + Fore.RED + str(dmg) + Style.RESET_ALL + " damage!")
-            self.antag.health -= dmg
+            choice = self.protag.chooseAttack()
+            dmg = (choice[0], max(0, choice[1] - self.antag.defense))
+            #Check if the action type is attack
+            if dmg[0]:
+                io.say("It did " + Fore.RED + str(dmg[1]) + Style.RESET_ALL + " damage!")
+            self.antag.health -= dmg[1]
             if self.antag.health <= 0:
                 self.antag.health = 0
                 break
             print("")
-            dmg = abs(self.antag.chooseRandomAttack() - self.protag.defense)
-            io.say("It did " + Fore.RED + str(dmg) + Style.RESET_ALL + " damage!")
-            self.protag.health -= dmg
+            choice = self.antag.chooseRandomAttack()
+            dmg = (choice[0], max(0, choice[1] - self.protag.defense))
+            if dmg[0]:
+                io.say("It did " + Fore.RED + str(dmg[1]) + Style.RESET_ALL + " damage!")
+            self.protag.health -= dmg[1]
             if self.protag.health <= 0:
                 self.protag.health = 0
                 break
@@ -34,8 +39,8 @@ class Battle:
         if self.antag.health <= 0:
             print("")
             self.antag.enemy_report()
-            print("You win!")
+            print(Fore.GREEN +"You win!")
         else:
             print("")
             self.protag.report()
-            print("You died!")
+            print(Fore.RED + "You died!")
