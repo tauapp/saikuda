@@ -23,10 +23,10 @@ def progressBar(label: str, stat: int, max: int, color_inner,):
   print(
     #To make progress bars align
     label + (" " * (10 - len(label)) + 
-    Fore.BLACK + "[" +
+    Fore.WHITE + "[" +
     color_inner + ("|" * bars) +
     Fore.BLACK + ("|" * (20 - bars)) +
-    Fore.BLACK + "] "
+    Fore.WHITE + "] "
     + Fore.BLUE +
     str(stat) + "/" + str(max)
   ))
