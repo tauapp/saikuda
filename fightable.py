@@ -22,9 +22,6 @@ class Fightable:
 
     items = []
 
-    #The current battle
-    battle = None
-
     #Perform an Attack and deduct from energy
     def attack(self, index):
       #Attack being done

@@ -56,7 +56,7 @@ Creature("Cat", 5000, 500, 50, 100, [
   )
 ], items)]
 
-animal = Fightable("Bear", 10, 100, 100, 25, [
+animal = Fightable("Bear", 100000, 100, 100, 25, [
   Attack(
     "Scratch",
     10,

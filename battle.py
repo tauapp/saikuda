@@ -23,6 +23,9 @@ class Battle:
         self.protag.report()
         while True:
             choice = self.protag.chooseAction()
+            if choice[0] == 2:
+                self.setProtag()
+                return self.start()
             dmg = (choice[0], max(0, choice[1] - self.antag.defense))
             #Check if the action type is attack
             if dmg[0]:

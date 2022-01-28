@@ -63,9 +63,7 @@ class Creature(Fightable):
       io.say(pronoun[0], "rested and recovered 20% of", pronoun[1], ENERGY + "!")
       return (False, 0)
     elif choice == "Switch Creature":
-      self.battle.setProtag()
-      self.battle.start()
-      return (False, 0)
+      return (2, 0)
     else:
       #TODO
       io.say("The enemy doesn't want to be spared!")
