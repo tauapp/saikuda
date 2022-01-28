@@ -2,6 +2,7 @@ from creature import Creature
 from fightable import Fightable
 import util_io as io
 from colorama import Fore, Style
+import os
 
 class Battle:
     def __init__(self, protaglist: Creature, antag: Fightable):
@@ -43,6 +44,7 @@ class Battle:
             if self.protag.health <= 0:
                 self.protag.health = 0
                 break
+            os.system("clear")
             print("")
             self.antag.enemy_report()
             print("")
