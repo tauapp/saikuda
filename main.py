@@ -11,18 +11,18 @@ init(autoreset = True)
 player = Creature("You", 10000, 1000, 100, 50, [
   Attack(
     "Beam",
-    1,
+    10,
     5
   ),
   Attack(
     "Energy Ball",
-    10,
-    20
+    50,
+    100
   ),
   Attack(
     "Plasma Beam",
     100,
-    75
+    250
   )
 ], [
   Item(
@@ -48,7 +48,7 @@ animal = Fightable("Bear", 100000, 100, 100, 25, [
     40,
     25
   )
-])
+] , [])
 
 battle = Battle(player, animal)
 battle.start()

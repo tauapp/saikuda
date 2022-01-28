@@ -20,6 +20,11 @@ class Creature(Fightable):
 
   def chooseAction(self):
 
+    #Formatting
+    HEALTH = Fore.RED + "HEALTH" + Style.RESET_ALL
+    ENERGY = Fore.BLUE + "ENERGY" + Style.RESET_ALL
+    DEFENSE = Fore.GREEN + "DEFENSE" + Style.RESET_ALL
+
     #If the user defended last round, remove the defense
     if self.reduceDefense:
       self.defense /= 3
@@ -31,7 +36,7 @@ class Creature(Fightable):
       pronoun = ("You", "your")
     else:
       pronoun = (self.name, "its")
-    choice = io.chooseList("Choose an action:", [
+    choice = io.chooseList("Choose an action", [
       "Fight",
       "Defend",
       "Item",
@@ -42,16 +47,19 @@ class Creature(Fightable):
       return self.chooseAttack()
     elif choice == "Defend":
       self.defense *= 3
-      io.say(pronoun[0], "defended, tripling", pronoun[1] + " " + Fore.GREEN + "DEFENSE" + Style.RESET_ALL + "!")
+      io.say(pronoun[0], "defended, tripling", pronoun[1] + " " + DEFENSE + "!")
       self.reduceDefense = True
       return (False, 0)
     elif choice == "Item":
+      if len(self.items) == 0:
+        io.say("You don't have any items!")
+        return self.chooseAction()
       self.chooseItem()
       return (False, 0)
     elif choice == "Rest":
       self.energy += (self.max_energy * 0.2)
       self.energy = min(round(self.energy), self.max_energy)
-      io.say(pronoun[0], "rested and recovered 20% of", pronoun[1], "energy!")
+      io.say(pronoun[0], "rested and recovered 20% of", pronoun[1], ENERGY + "!")
       return (False, 0)
     else:
       #TODO
@@ -59,6 +67,15 @@ class Creature(Fightable):
       return (False, 0)
     
   def chooseItem(self):
+    #Formatting
+    HEALTH = Fore.RED + "HEALTH" + Style.RESET_ALL
+    ENERGY = Fore.BLUE + "ENERGY" + Style.RESET_ALL
+    DEFENSE = Fore.GREEN + "DEFENSE" + Style.RESET_ALL
+    pronoun = tuple()
+    if self.name == "You":
+      pronoun = ("You", "your")
+    else:
+      pronoun = (self.name, "its")
     lookup = [x.name for x in self.items]
     choices = [
       x.name + " " + Fore.RED + str(x.health) + Style.RESET_ALL + "/" + Fore.BLUE + str(x.energy)
@@ -70,7 +87,7 @@ class Creature(Fightable):
     self.health = min(self.health, self.max_health)
     self.energy += item.energy
     self.energy = min(self.energy, self.max_energy)
-    io.say("You used the", item.name + ".", "You restored", item.health, "health and", item.energy, "energy!")
+    io.say(pronoun[0], "used the", item.name + ".", pronoun[0], "restored", item.health, HEALTH + " and", item.energy, ENERGY + "!")
     self.items.pop(choice)
     return
 
