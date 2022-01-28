@@ -8,7 +8,20 @@ from item import Item
 
 init(autoreset = True)
 
-player = Creature("You", 10000, 1000, 100, 50, [
+items = [
+  Item(
+    "Donut",
+    50,
+    50
+  ),
+  Item(
+    "Donut",
+    50,
+    50
+  )
+]
+
+players = [Creature("You", 10000, 1000, 100, 50, [
   Attack(
     "Beam",
     10,
@@ -24,20 +37,26 @@ player = Creature("You", 10000, 1000, 100, 50, [
     100,
     250
   )
-], [
-  Item(
-    "Donut",
+], items),
+Creature("Cat", 5000, 500, 50, 100, [
+  Attack(
+    "Scratch",
+    10,
+    5
+  ),
+  Attack(
+    "Flurry",
     50,
     50
   ),
-  Item(
-    "Donut",
-    50,
-    50
+  Attack(
+    "Nine Lives",
+    500,
+    500
   )
-])
+], items)]
 
-animal = Fightable("Bear", 100000, 100, 100, 25, [
+animal = Fightable("Bear", 10, 100, 100, 25, [
   Attack(
     "Scratch",
     10,
@@ -50,5 +69,5 @@ animal = Fightable("Bear", 100000, 100, 100, 25, [
   )
 ] , [])
 
-battle = Battle(player, animal)
+battle = Battle(players, animal)
 battle.start()

@@ -41,6 +41,7 @@ class Creature(Fightable):
       "Defend",
       "Item",
       "Rest",
+      "Switch Creature",
       "Spare"
     ])
     if choice == "Fight":
@@ -60,6 +61,10 @@ class Creature(Fightable):
       self.energy += (self.max_energy * 0.2)
       self.energy = min(round(self.energy), self.max_energy)
       io.say(pronoun[0], "rested and recovered 20% of", pronoun[1], ENERGY + "!")
+      return (False, 0)
+    elif choice == "Switch Creature":
+      self.battle.setProtag()
+      self.battle.start()
       return (False, 0)
     else:
       #TODO
