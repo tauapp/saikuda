@@ -69,7 +69,7 @@ players = [Creature("You", 10000, 1000, 750, 50, [
     250
   )
 ], items),
-Creature("Cat", 5000, 500, 50, 50, [
+Creature("Cat", 5000, 500, 500, 50, [
   Attack(
     "Scratch",
     10,
@@ -90,8 +90,8 @@ Creature("Cat", 5000, 500, 50, 50, [
 animal = Fightable("Bear", 50000, 1000, 300, 100, [
   Attack(
     "Scratch",
-    10,
-    5
+    25,
+    100
   ),
   Attack(
     "Crushing Swipe",
