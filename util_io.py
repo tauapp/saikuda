@@ -1,6 +1,7 @@
 import inquirer
 from colorama import Fore
 import time
+import math
 
 def chooseList(question: str, choices) -> str:
   return inquirer.prompt([
@@ -19,7 +20,7 @@ def progressBar(label: str, stat: int, max: int, color_inner,):
   """
 
   percentage = stat/max
-  bars = round(percentage * 20)
+  bars = math.ceil(percentage * 20)
   print(
     #To make progress bars align
     label + (" " * (10 - len(label)) + 
