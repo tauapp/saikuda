@@ -1,3 +1,8 @@
+import os
+print("Configuring...")
+os.system("pip install colorama")
+os.system("pip install inquirer")
+
 from colorama import init, Fore, Back, Style
 import util_io as io
 from creature import Creature
