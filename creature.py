@@ -81,7 +81,10 @@ class Creature(Fightable):
       x.name + " " + Fore.RED + str(x.health) + Style.RESET_ALL + "/" + Fore.BLUE + str(x.energy)
       for x in self.items
     ]
+    choices.append("Back")
     choice = lookup.index(" ".join(io.chooseList("Choose an item", choices).split(" ")[:-1]))
+    if choice == "Back":
+      return self.chooseAction()
     item = self.items[choice]
     self.health += item.health
     self.health = min(self.health, self.max_health)
@@ -98,5 +101,8 @@ class Creature(Fightable):
       x.name + " " + Fore.RED + str(x.intensity) + Style.RESET_ALL + "/" + Fore.BLUE + str(x.cost)
       for x in self.attack_list
     ]
+    choices.append("Back")
     choice = " ".join(io.chooseList("Choose an attack", choices).split(" ")[:-1])
+    if choice == "Back":
+      return self.chooseAction()
     return self.attack(lookup.index(choice))
