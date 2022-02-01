@@ -2,6 +2,7 @@ import os
 print("Configuring...")
 os.system("pip install colorama")
 os.system("pip install inquirer")
+os.system("clear")
 
 from colorama import init, Fore, Back, Style
 import util_io as io
