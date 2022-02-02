@@ -107,4 +107,4 @@ class Creature(Fightable):
     if choice == "Back":
       return self.chooseAction()
     choice = lookup.index(" ".join(choice.split(" ")[:-1]))
-    return self.attack(lookup.index(choice))
+    return self.attack(lookup.index(choice) - 1)
