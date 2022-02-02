@@ -20,7 +20,7 @@ init(autoreset = True)
 
 io.say(Fore.BLUE + Style.BRIGHT + "COMMODORE 64")
 time.sleep(1)
-io.say(Fore.BLUE + Style.BRIGHT + "(C) 1985 Verified Floppy Distributors\n")
+io.say(Fore.BLUE + Style.BRIGHT + "(C) 1984 Verified Floppy Distributors\n")
 time.sleep(1)
 io.say(Fore.BLUE + Style.BRIGHT+ "Booting Cartridge...")
 time.sleep(3)
