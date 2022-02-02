@@ -1,5 +1,5 @@
 from _inquirer import inquirer as inquirer
-from _colorama import Fore
+from _colorama import Fore, Style
 import time
 import math
 
@@ -24,7 +24,7 @@ def progressBar(label: str, stat: int, max: int, color_inner,):
   print(
     #To make progress bars align
     label + (" " * (10 - len(label)) + 
-    Fore.WHITE + "[" +
+    Style.RESET_ALL + "[" +
     color_inner + ("|" * bars) +
     Fore.BLACK + ("|" * (20 - bars)) +
     Fore.WHITE + "] "
