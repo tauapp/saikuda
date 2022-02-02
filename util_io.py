@@ -1,5 +1,5 @@
-import _inquirer as inquirer
-from colorama import Fore
+from _inquirer import inquirer as inquirer
+from _colorama import Fore
 import time
 import math
 
