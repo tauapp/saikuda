@@ -81,6 +81,7 @@ class Creature(Fightable):
       x.name + " " + Fore.RED + str(x.health) + Style.RESET_ALL + "/" + Fore.BLUE + str(x.energy)
       for x in self.items
     ]
+    choices.insert(0, "Back")
     choice = io.chooseList("Choose an item", choices)
     if choice == "Back":
       return self.chooseAction()
