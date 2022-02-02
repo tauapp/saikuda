@@ -1,0 +1,1 @@
+inquirer = __import__("inquirer")
