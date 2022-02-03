@@ -1,12 +1,13 @@
 from creature import Creature
 from fightable import Fightable
+from player import Player
 import util_io as io
 from _colorama import Fore, Style
 import os
 
 class Battle:
-    def __init__(self, protaglist: Creature, antag: Fightable):
-        self.protaglist = protaglist
+    def __init__(self, protaglist: Player, antag: Fightable):
+        self.protaglist = protaglist.creatures
         self.antag=antag
         self.setProtag()
 

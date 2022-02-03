@@ -1,4 +1,6 @@
 import os
+
+from player import Player
 try:
   __import__('_colorama')
 except:
@@ -61,7 +63,7 @@ items = [
   )
 ]
 
-players = [Creature("You", 10000, 1000, 750, 50, [
+creatures = [Creature("You", 10000, 1000, 750, 50, [
   Attack(
     "Beam",
     10,
@@ -109,5 +111,7 @@ animal = Fightable("Bear", 50000, 1000, 300, 100, [
   )
 ] , [])
 
-battle = Battle(players, animal)
+player = Player("Main", creatures, items)
+
+battle = Battle(player, animal)
 battle.start()
