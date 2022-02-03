@@ -55,14 +55,15 @@ class Battle:
             print("")
             self.antag.enemy_report()
             print(Fore.GREEN +"You win!")
-            return
+            return True
         else:
             print("")
             self.protag.report()
             print(Fore.RED + self.protag.name + " died!")
+            os.system("clear")
             self.protaglist.pop(self.protagID)
             if self.protag.name != "You":
                 self.setProtag()
                 self.start()
             else:
-                return
+                return False
