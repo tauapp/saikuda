@@ -16,6 +16,24 @@ class Creature(Fightable):
       color_inner = Fore.BLUE,
     )
 
+  #Increases the player EXP at the end of the battle. If the player has leveled up, it increases their stats.
+  def giveExp(self, exp):
+    pronoun = "is"
+    if self.name == "You":
+      pronoun = "are"
+    self.exp += exp
+    io.narr(self.name, "gained", exp, "EXP!")
+    level = self.level
+    nextlevel = level + 1
+    if self.exp >= self.leveltable[nextlevel]["exp"]:
+      io.narr(self.name, "leveled up!", self.name, pronoun, "now level", nextlevel, "!")
+      self.exp -= self.leveltable[nextlevel]["exp"]
+      self.level += 1
+      self.max_health += self.leveltable[nextlevel]["health"]
+      self.max_energy += self.leveltable[nextlevel]["energy"]
+      self.attack_str += self.leveltable[nextlevel]["attack"]
+      self.defense += self.leveltable[nextlevel]["defense"]
+
   reduceDefense = False
 
   def chooseAction(self):

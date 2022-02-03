@@ -1,5 +1,3 @@
-Create Player class to store creatures and items
-Implement level system for creatures
 Implement weapon and armor for creatures
 Create Room class with:
   exits, dialogue, landscape

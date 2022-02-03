@@ -19,15 +19,7 @@ from item import Item
 import time
 
 init(autoreset = True)
-
-io.say(Fore.BLUE + Style.BRIGHT + "COMMODORE 64")
-time.sleep(1)
-io.say(Fore.BLUE + Style.BRIGHT + "(C) 1984 Verified Floppy Distributors\n")
-time.sleep(1)
-io.say(Fore.BLUE + Style.BRIGHT+ "Booting Cartridge...")
-time.sleep(3)
-io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda (Demo)!")
-time.sleep(2)
+io.narr(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
 tutorial = io.chooseList("Do you want to go through the tutorial?", ["Yes", "No"])
 if tutorial == "Yes":
   io.narr("In the world of Saikuda, you will have many challenges, and one of those challenges is unfriendly creatures.")
@@ -79,7 +71,7 @@ creatures = [Creature("You", 10000, 1000, 750, 50, [
     100,
     250
   )
-], items),
+], items, 1, 0, []),
 Creature("Cat", 5000, 500, 500, 50, [
   Attack(
     "Scratch",
@@ -96,7 +88,7 @@ Creature("Cat", 5000, 500, 500, 50, [
     500,
     500
   )
-], items)]
+], items, 1, 0, [])]
 
 animal = Fightable("Bear", 50000, 1000, 300, 100, [
   Attack(
@@ -109,7 +101,7 @@ animal = Fightable("Bear", 50000, 1000, 300, 100, [
     40,
     250
   )
-] , [])
+] , [], 1, 0, [])
 
 player = Player("Main", creatures, items)
 

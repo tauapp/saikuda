@@ -55,7 +55,7 @@ class Fightable:
       color_inner = Fore.GREEN,
     )
 
-    def __init__(self, name, max_health, max_energy, defense, attack, attack_list, items):
+    def __init__(self, name, max_health, max_energy, defense, attack, attack_list, items, level, exp, leveltable):
         self.name = name
         self.health = max_health
         self.max_health = max_health
@@ -65,3 +65,6 @@ class Fightable:
         self.energy = max_energy
         self.max_energy = max_energy
         self.items = items
+        self.level = level
+        self.exp = exp
+        self.leveltable = leveltable
