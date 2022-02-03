@@ -43,18 +43,16 @@ class Creature(Fightable):
   armor = Armor("Bandage", 1)
 
   def equipArmor(self, armor):
+    self.defense /= self.armor.multiplier
     self.armor = armor
+    self.defense *= self.armor.multiplier
     io.narr(self.name, "equipped the", armor.name + "!")
   
   def equipWeapon(self, weapon):
+    self.attack_str /= self.weapon.multiplier
     self.weapon = weapon
+    self.attack_str *= self.weapon.multiplier
     io.narr(self.name, "equipped the", weapon.name + "!")
-
-  def getAtkStr(self):
-    return self.attack_str * self.weapon.multiplier
-
-  def getDefStr(self):
-    return self.defense * self.armor.multiplier
 
   def chooseAction(self):
 
