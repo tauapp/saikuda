@@ -105,5 +105,12 @@ animal = Fightable("Bear", 50000, 1000, 300, 100, [
 
 player = Player("Main", creatures, items)
 
+animal.conversations = [
+  "You complement Bear on its sleek fur. It growls in agreement.",
+  "You compliment Bear on its strength. Bear growls in agreement.",
+  "You compliment Bear on its speed. Bear growls in agreement.",
+  "You tell Bear that it doesn't need to fight. Bear whimpers."
+]
+
 battle = Battle(player, animal)
 battle.start()

@@ -29,7 +29,7 @@ def progressBar(label: str, stat: int, max: int, color_inner,):
     Fore.BLACK + ("|" * (20 - bars)) +
     Fore.WHITE + "] "
     + Fore.BLUE +
-    str(stat) + "/" + str(max)
+    str(int(stat)) + "/" + str(max)
   ))
 
 def say(*args):

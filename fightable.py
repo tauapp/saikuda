@@ -22,6 +22,13 @@ class Fightable:
 
     items = []
 
+    conversations = []
+
+    #First item is current friendship value. Second item is the amount needed to spare.
+    friendship = (0,5)
+
+    sparable = False
+
     #Perform an Attack and deduct from energy
     def attack(self, index):
       #Attack being done
@@ -35,6 +42,8 @@ class Fightable:
       return (True, att.intensity * self.attack_str)
 
     def chooseRandomAction(self):
+      if self.sparable:
+        return (False, 0)
       #Formatting
       HEALTH = Fore.RED + "HEALTH" + Style.RESET_ALL
       ENERGY = Fore.BLUE + "ENERGY" + Style.RESET_ALL

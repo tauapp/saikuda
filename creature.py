@@ -1,3 +1,5 @@
+import time
+import random
 from armor import Armor
 import util_io as io
 from _colorama import Fore, Style
@@ -42,6 +44,8 @@ class Creature(Fightable):
 
   armor = Armor("Bandage", 1)
 
+  battle = None
+
   def equipArmor(self, armor):
     self.defense /= self.armor.multiplier
     self.armor = armor
@@ -74,13 +78,17 @@ class Creature(Fightable):
       pronoun = (self.name, "its")
     choice = io.chooseList("Choose an action", [
       "Fight",
+      "Talk",
       "Defend",
       "Item",
       "Rest",
-      "Switch Creature"
+      "Switch Creature",
+      Fore.YELLOW + "Spare" if self.battle.antag.sparable else "Spare"
     ])
     if choice == "Fight":
       return self.chooseAttack()
+    elif choice == "Talk":
+      return self.talk()
     elif choice == "Defend":
       self.defense *= 3
       io.say(pronoun[0], "defended, tripling", pronoun[1] + " " + DEFENSE + "!")
@@ -99,8 +107,32 @@ class Creature(Fightable):
       return (False, 0)
     elif choice == "Switch Creature":
       return (2, 0)
+    elif choice == "Spare" or choice == Fore.YELLOW + "Spare":
+      return ("Spare", -1)
     else:
       return (False, 0)
+
+  def talk(self):
+    enemy: Fightable = self.battle.antag
+    complement = random.choice(enemy.conversations)
+    io.say(complement)
+    time.sleep(1)
+    if enemy.sparable:
+      return (False, 0)
+    reqpercent = float(enemy.friendship[0]) / float(enemy.friendship[1])
+    initial_attack_str = enemy.attack_str / (1 - reqpercent)
+    initial_defense = enemy.defense / (1 - reqpercent)
+    #Set the tuple directly because tuples are immutable
+    enemy.friendship = (enemy.friendship[0] + 1, enemy.friendship[1])
+    reqpercent = float(enemy.friendship[0]) / float(enemy.friendship[1])
+    enemy.attack_str = initial_attack_str * (1 - reqpercent)
+    enemy.defense = initial_defense * (1 - reqpercent)
+    if enemy.friendship[0] >= enemy.friendship[1]:
+      io.say(enemy.name, "doesn't want to fight anymore. " + Fore.GREEN + "It can now be spared!")
+      time.sleep(1)
+      enemy.sparable = True
+    return (False, 0)
+
     
   def chooseItem(self):
     #Formatting
