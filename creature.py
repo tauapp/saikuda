@@ -1,6 +1,8 @@
+from armor import Armor
 import util_io as io
 from _colorama import Fore, Style
 from fightable import Fightable
+from weapon import Weapon
 
 class Creature(Fightable):
   def report(self):
@@ -35,6 +37,24 @@ class Creature(Fightable):
       self.defense += self.leveltable[nextlevel]["defense"]
 
   reduceDefense = False
+
+  weapon = Weapon("Stick", 1)
+
+  armor = Armor("Bandage", 1)
+
+  def equipArmor(self, armor):
+    self.armor = armor
+    io.narr(self.name, "equipped the", armor.name + "!")
+  
+  def equipWeapon(self, weapon):
+    self.weapon = weapon
+    io.narr(self.name, "equipped the", weapon.name + "!")
+
+  def getAtkStr(self):
+    return self.attack_str * self.weapon.multiplier
+
+  def getDefStr(self):
+    return self.defense * self.armor.multiplier
 
   def chooseAction(self):
 
