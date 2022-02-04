@@ -1,7 +1,9 @@
 from _inquirer import inquirer as inquirer
 from _colorama import Fore, Style
+from getpass import getpass
 import time
 import math
+import time, threading, os, sys, tty, termios
 
 def chooseList(question: str, choices) -> str:
   return inquirer.prompt([
@@ -38,6 +40,6 @@ def say(*args):
 
 #Narrate
 def narr(*args):
-  print(*args)
-  letters = len(" ".join(args))
-  time.sleep(letters/25)
+  print(Fore.YELLOW + "~" + Style.RESET_ALL ,*args, end="")
+  #Continue text on enter
+  getpass("")

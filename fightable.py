@@ -24,6 +24,8 @@ class Fightable:
 
     conversations = []
 
+    isCreature = False
+
     #First item is current friendship value. Second item is the amount needed to spare.
     friendship = (0,5)
 
@@ -70,7 +72,11 @@ class Fightable:
         self.max_health = max_health
         self.defense = defense
         self.attack_str = attack
-        self.attack_list = attack_list
+        self.possible_attacks = attack_list
+        if self.isCreature:
+          self.attack_list = [x for x in self.possible_attacks if x.req <= level]
+        else:
+          self.attack_list = attack_list
         self.energy = max_energy
         self.max_energy = max_energy
         self.items = items

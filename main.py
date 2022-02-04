@@ -19,9 +19,10 @@ from item import Item
 import time
 
 init(autoreset = True)
-io.narr(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
+io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
 tutorial = io.chooseList("Do you want to go through the tutorial?", ["Yes", "No"])
 if tutorial == "Yes":
+  io.narr("A reminder for later: If you see a " + Fore.YELLOW + "~" + Style.RESET_ALL + " in front of a sentence, that means you must press [Enter] to continue. This is one of those sentences!")
   io.narr("In the world of Saikuda, you will have many challenges, and one of those challenges is unfriendly creatures.")
   io.narr("When you start a battle, you can choose one of your creatures to fight for you, or you can go fight yourself.")
   io.narr("You often have more health and defense than your creatures, but they have more powerful attacks.")
@@ -59,34 +60,40 @@ creatures = [Creature("You", 10000, 1000, 750, 50, [
   Attack(
     "Beam",
     10,
-    5
+    5,
+    1
   ),
   Attack(
     "Energy Ball",
     50,
-    100
+    100,
+    1
   ),
   Attack(
     "Plasma Beam",
     100,
-    250
+    250,
+    1
   )
 ], items, 1, 0, []),
 Creature("Cat", 5000, 500, 500, 50, [
   Attack(
     "Scratch",
     10,
-    5
+    5,
+    1
   ),
   Attack(
     "Flurry",
     50,
-    40
+    40,
+    1
   ),
   Attack(
     "Nine Lives",
     500,
-    500
+    500,
+    1
   )
 ], items, 1, 0, [])]
 
@@ -94,12 +101,14 @@ animal = Fightable("Bear", 50000, 1000, 300, 100, [
   Attack(
     "Scratch",
     25,
-    100
+    100,
+    1
   ),
   Attack(
     "Crushing Swipe",
     40,
-    250
+    250,
+    1
   )
 ] , [], 1, 0, [])
 
