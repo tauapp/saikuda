@@ -20,9 +20,9 @@ class Room:
         self.player = player
 
     def start(self):
-        print(self.map, end="\n\n")
+        print(self.map + "\n")
         if self.description != None:
-            io.narr(self.description)
+            io.say(self.description)
         if self.enemychance >= random.random():
             io.narr("A wild " + self.enemy.name + " appears!")
             #Start battle between player and enemy
@@ -39,7 +39,7 @@ class Room:
             "Check Stats"
         ])
         if choice == "Move":
-            room = self.exits[io.chooseList("Where do you want to go?", self.exits.keys)]
+            room = self.exits[io.chooseList("Where do you want to go?", self.exits.keys())]
             return room.start()
         elif choice == "Check Stats":
             print("Attack Strength:", self.player.attack_str)
