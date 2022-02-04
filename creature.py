@@ -23,12 +23,12 @@ class Creature(Fightable):
   isCreature = True
 
   #Increases the player EXP at the end of the battle. If the player has leveled up, it increases their stats. Also used for currency.
-  def reward(self, exp):
+  def reward(self, exp, money):
     pronoun = "is"
     if self.name == "You":
       pronoun = "are"
     self.exp += exp
-    io.narr(self.name, "gained", exp, "EXP!")
+    io.narr(self.name, "gained", exp, "EXP and", money, "aurum!")
     level = self.level
     nextlevel = level + 1
     if self.exp >= self.leveltable[nextlevel]["exp"]:

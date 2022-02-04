@@ -22,7 +22,7 @@ init(autoreset = True)
 io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
 tutorial = io.chooseList("Do you want to go through the tutorial?", ["Yes", "No"])
 if tutorial == "Yes":
-  io.narr("A reminder for later: If you see a " + Fore.YELLOW + "~" + Style.RESET_ALL + " in front of a sentence, that means you must press [Enter] to continue. This is one of those sentences!")
+  io.narr("A reminder for later: If you see a " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + " in front of a sentence, that means you must press [Enter] to continue. This is one of those sentences!")
   io.narr("In the world of Saikuda, you will have many challenges, and one of those challenges is unfriendly creatures.")
   io.narr("When you start a battle, you can choose one of your creatures to fight for you, or you can go fight yourself.")
   io.narr("You often have more health and defense than your creatures, but they have more powerful attacks.")

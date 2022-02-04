@@ -40,6 +40,6 @@ def say(*args):
 
 #Narrate
 def narr(*args):
-  print(Fore.YELLOW + "~" + Style.RESET_ALL ,*args, end="")
+  print(Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL ,*args, end="")
   #Continue text on enter
   getpass("")
