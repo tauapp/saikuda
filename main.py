@@ -9,7 +9,7 @@ except:
   os.system("pip install inquirer")
   os.system("clear")
 
-from _colorama import init, Fore, Back, Style
+from _colorama import init, Fore, Style
 import util_io as io
 from creature import Creature
 from attack import Attack
@@ -17,109 +17,56 @@ from fightable import Fightable
 from battle import Battle
 from item import Item
 import time
+import rooms.mountain.start as start
 
 init(autoreset = True)
 io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
-tutorial = io.chooseList("Do you want to go through the tutorial?", ["Yes", "No"])
-if tutorial == "Yes":
-  io.narr("A reminder for later: If you see a " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + " in front of a sentence, that means you must press [Enter] to continue. This is one of those sentences!")
-  io.narr("In the world of Saikuda, you will have many challenges, and one of those challenges is unfriendly creatures.")
-  io.narr("When you start a battle, you can choose one of your creatures to fight for you, or you can go fight yourself.")
-  io.narr("You often have more health and defense than your creatures, but they have more powerful attacks.")
-  io.narr("When it's your creature's turn to battle, they have multiple choices:")
-  io.narr("To fight, defend, use an item, rest, or switch creature.")
-  io.narr("When you fight, you will see your list of attacks in a format like this:")
-  io.narr("> Tackle "+ Fore.RED + "10" + Style.RESET_ALL + "/" + Fore.BLUE + "5")
-  io.narr("The 10/5 means that this attack has an intensity of 10 and costs 5 energy to perform.")
-  io.narr("Intensity is used to calculate the amount of damage an attack does.")
-  io.narr("It takes energy to perform an attack. If you don't have enough energy to do an attack, you can try, but it won't do any damage.")
-  io.narr("Next is defending. Defending triples your DEFENSE statistic, allowing you to take less damage from attacks.")
-  io.narr("Next is choosing Items. If you choose an Item, you can consume it, restoring some of your health and energy. Items are in the format:")
-  io.narr("> Cake "+ Fore.RED + "100" + Style.RESET_ALL + "/" + Fore.BLUE + "200")
-  io.narr("The 100/200 means the cake heals 100 health and 200 energy.")
-  io.narr("Resting will replenish 20% of your maximum energy.")
-  io.narr("Switching creatures does exactly what is seems like. Switching creatures in the middle of a battle is important in the future RPG because once you lose a creature, it's gone forever.")
-  io.narr("Remember: If one of your creatures dies, you can switch to another, but if you die, the game ends.")
-  io.narr("Hopefully that wasn't too long. Now for the battle!")
+io.narr("I know this is poorly timed, but when you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", it means you must press [Enter] to continue. This is one of those sentences!\n(On some platforms like Repl.it, you will have to click the text once before you can interact with the game.)")
+io.narr("Anyways, it’s time for you to choose a name. Don't bother about the logistics of how this will work.")
+io.narr("Also, don’t put a really stupid name, because that joke will get old really quickly.")
 
-#Shared item list making use of Python's Pass-by-reference
-items = [
-  Item(
-    "Donut",
-    100,
-    250
-  ),
-  Item(
-    "Steak",
-    2500,
-    100
-  )
-]
+name = io.ask("Enter a name")
+io.narr("Let’s get started!")
 
-creatures = [Creature("You", 10000, 1000, 750, 50, [
-  Attack(
-    "Beam",
-    10,
-    5,
-    1
-  ),
-  Attack(
-    "Energy Ball",
-    50,
-    100,
-    1
-  ),
-  Attack(
-    "Plasma Beam",
-    100,
-    250,
-    1
-  )
-], items, 1, 0, []),
-Creature("Cat", 5000, 500, 500, 50, [
-  Attack(
-    "Scratch",
-    10,
-    5,
-    1
-  ),
-  Attack(
-    "Flurry",
-    50,
-    40,
-    1
-  ),
-  Attack(
-    "Nine Lives",
-    500,
-    500,
-    1
-  )
-], items, 1, 0, [])]
+you = Creature(
+  name = "You",
+  max_health = 20,
+  max_energy = 20,
+  defense = 0,
+  attack = 5,
+  attack_list = [
+    Attack(
+      name = "Punch",
+      intensity= 5,
+      cost = 5,
+      req = 0
+    )
+  ],
+  level = 0,
+  exp = 0,
+  leveltable = [
+    {"exp": 0, "energy": 20, "defense": 0, "attack": 5, "health": 20},
+    {"exp": 10, "energy": 30, "defense": 5, "attack": 7, "health": 30},
+    {"exp": 20, "energy": 40, "defense": 10, "attack": 10, "health": 40},
+    {"exp": 30, "energy": 50, "defense": 15, "attack": 15, "health": 50},
+    {"exp": 40, "energy": 60, "defense": 20, "attack": 20, "health": 60},
+    {"exp": 50, "energy": 70, "defense": 25, "attack": 25, "health": 70},
+    {"exp": 60, "energy": 80, "defense": 30, "attack": 30, "health": 80},
+    {"exp": 70, "energy": 90, "defense": 35, "attack": 35, "health": 90},
+    {"exp": 80, "energy": 100, "defense": 40, "attack": 40, "health": 100},
+  ]
+)
 
-animal = Fightable("Bear", 50000, 1000, 300, 100, [
-  Attack(
-    "Scratch",
-    25,
-    100,
-    1
-  ),
-  Attack(
-    "Crushing Swipe",
-    40,
-    250,
-    1
-  )
-] , [], 1, 0, [])
+player = Player(
+  name=name,
+  creatures=[you],
+  items=[
+    Item(
+      "Chocolate",
+      5,
+      5
+    )
+  ]
+)
 
-player = Player("Main", creatures, items)
-
-animal.conversations = [
-  "You complement Bear on its sleek fur. It growls in agreement.",
-  "You compliment Bear on its strength. Bear growls in agreement.",
-  "You compliment Bear on its speed. Bear growls in agreement.",
-  "You tell Bear that it doesn't need to fight. Bear whimpers."
-]
-
-battle = Battle(player, animal)
-battle.start()
+start.create(player).start()

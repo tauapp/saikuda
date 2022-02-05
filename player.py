@@ -7,3 +7,5 @@ class Player:
         self.creatures = creatures
         self.items = items
         self.name = name
+        for c in creatures:
+            c.items = self.items

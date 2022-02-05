@@ -1,6 +1,7 @@
 import util_io as io
 from _colorama import Fore, Style
 import random
+from typing import List, Dict
 
 class Fightable:
 
@@ -66,7 +67,7 @@ class Fightable:
       color_inner = Fore.GREEN,
     )
 
-    def __init__(self, name, max_health, max_energy, defense, attack, attack_list, items, level, exp, leveltable):
+    def __init__(self, name, max_health, max_energy, defense, attack, attack_list, level, exp, leveltable: List[Dict[str, int]]):
         self.name = name
         self.health = max_health
         self.max_health = max_health
@@ -79,7 +80,6 @@ class Fightable:
           self.attack_list = attack_list
         self.energy = max_energy
         self.max_energy = max_energy
-        self.items = items
         self.level = level
         self.exp = exp
         self.leveltable = leveltable

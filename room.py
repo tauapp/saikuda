@@ -1,3 +1,4 @@
+import os
 from battle import Battle
 import util_io as io
 import random
@@ -22,7 +23,7 @@ class Room:
     def start(self):
         print(self.map + "\n")
         if self.description != None:
-            io.say(self.description)
+            io.narr(self.description)
         if self.enemychance >= random.random():
             io.narr("A wild " + self.enemy.name + " appears!")
             #Start battle between player and enemy
@@ -42,14 +43,16 @@ class Room:
             room = self.exits[io.chooseList("Where do you want to go?", self.exits.keys())]
             return room.start()
         elif choice == "Check Stats":
-            print("Attack Strength:", self.player.attack_str)
-            print("Defense:", self.player.defense)
-            print("Health:", self.player.health)
-            print("Energy:", self.player.energy)
-            print("Level:", self.player.level)
-            print("EXP to next level:", self.player.leveltable[self.player.level + 1]["exp"] - self.player.exp)
-            print("Weapon:", self.player.weapon.name, "(Attack Multiplier:", self.player.weapon.multiplier, ")")
-            print("Armor:", self.player.armor.name, "(Defense Multiplier:", self.player.armor.multiplier, ")")
+            os.system("clear")
+            player = self.player.creatures[0]
+            print("Attack Strength:", player.attack_str)
+            print("Defense:", player.defense)
+            print("Health:", player.health)
+            print("Energy:", player.energy)
+            print("Level:", player.level)
+            print("EXP to next level:", player.leveltable[player.level + 1]["exp"] - player.exp)
+            print("Weapon:", player.weapon.name, "( Attack Multiplier:", player.weapon.multiplier, ")")
+            print("Armor:", player.armor.name, "( Defense Multiplier:", player.armor.multiplier, ")")
             print("Aurum:", self.player.aurum)
             return self.choose()
         else:
