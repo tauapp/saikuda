@@ -1,7 +1,9 @@
 from room import Room
 import util_io as io
+import rooms.mountain.ravine1 as ravine1
 
-def actions():
+def actions(player):
+    io.narr("You are on the top of a cold mountain.")
     io.narr("It’s freezing. It’s cold. No point in crying about it. You need to get downhill.")
     io.narr("Or is it downmountain...?")
     io.narr("You stand up but slip on ice. You are on the edge of a cliff.")
@@ -16,6 +18,5 @@ def create(player):
     map = ""
     return Room(map, player, 
     enemychance=0, 
-    description="You are on the top of a cold mountain.", 
-    exits = {"South": None},
+    exits = {"South": ravine1.create(player)},
     actions = actions)

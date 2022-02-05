@@ -59,6 +59,13 @@ def narr(*args):
 
 
 def ask(question) -> str:
-    return inquirer.prompt([
-        inquirer.Text("", message=question, validate=lambda _, x: x != "")
-    ])[""]
+    answer = input(f"[{Fore.YELLOW}?{Style.RESET_ALL}] {question}: ")
+    if bool(answer.strip()) == False:
+        return ask(question)
+    return answer
+
+#Creature dialogue
+def dialogue(creature, *args, waitForInput=True):
+    print(f"{Fore.CYAN}{creature.name}> {Style.RESET_ALL}", *args, end="", flush=True)
+    if waitForInput:
+        getpass("")

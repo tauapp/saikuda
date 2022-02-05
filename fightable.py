@@ -32,6 +32,24 @@ class Fightable:
 
     sparable = False
 
+    randomizeDialogue = True
+
+    dialogueNumber = 0
+
+    cdialogues = []
+
+    def chooseDialogue(self):
+      if self.randomizeDialogue:
+        io.say(random.choice(self.dialogues))
+      else:
+        dialogue = self.dialogues[self.dialogueNumber]
+        #If out of dialogue, say nothing
+        if self.dialogueNumber == len(self.dialogues) - 1:
+          return
+        io.dialogue(dialogue)
+
+
+
     #Perform an Attack and deduct from energy
     def attack(self, index):
       #Attack being done

@@ -12,29 +12,24 @@ class Room:
         "West": None,
     }
 
-    def __init__(self, map, player, actions = lambda: None, enemychance = 0, description = "", exits = {}):
+    def __init__(self, map, player, actions = lambda x: None, enemychance = 0, exits = {}):
         self.map = map
         self.enemychance = enemychance
-        self.description = description
         self.actions = actions
         self.exits = exits
         self.player = player
 
     def start(self):
+        os.system("clear")
         print(self.map + "\n")
-        if self.description != None:
-            io.narr(self.description)
-        if self.enemychance >= random.random():
-            io.narr("A wild " + self.enemy.name + " appears!")
-            #Start battle between player and enemy
-            if Battle(self.player, self.enemy).start() == False:
-                #TODO: Go back to previous room
-                pass
         #Run any custom actions provided for the room
-        self.actions()
+        self.actions(self.player)
+        if self.enemychance >= random.random():
+            pass
         self.choose()
 
     def choose(self):
+        os.system("clear")
         choice = io.chooseList("What do you want to do?", [
             "Move",
             "Check Stats"
@@ -45,7 +40,7 @@ class Room:
         elif choice == "Check Stats":
             os.system("clear")
             player = self.player.creatures[0]
-            print("Attack Strength:", player.attack_str)
+            print("\nAttack Strength:", player.attack_str)
             print("Defense:", player.defense)
             print("Health:", player.health)
             print("Energy:", player.energy)
@@ -54,6 +49,7 @@ class Room:
             print("Weapon:", player.weapon.name, "( Attack Multiplier:", player.weapon.multiplier, ")")
             print("Armor:", player.armor.name, "( Defense Multiplier:", player.armor.multiplier, ")")
             print("Aurum:", self.player.aurum)
+            input("\nPress enter to continue...")
             return self.choose()
         else:
             return self.choose()
