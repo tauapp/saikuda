@@ -64,7 +64,7 @@ def create(player):
     """
 
     actions = [
-        ("Look at lock", lookAtLock)
+        ("Look at lock", lookAtLock),
         ("Look at water cooler", lookAtWaterCooler)
     ]
 
