@@ -3,6 +3,8 @@ from room import Room
 
 exits = {}
 
+#TODO: If puzzle already solved, don't let lock break again
+
 def scripts(player):
     io.narr("With the penguin gone, you approach the door.")
     io.narr("The door's unlocked and you open it.")
@@ -17,9 +19,9 @@ def lookAtLock(player):
     global exits
     io.narr("You observe the electric lock. It has no keyhole.")
     options = ["Break the lock", "Nothing"]
-    if player.state["holdingwater"] == True:
-        options.append("Pour water on lock")
-    whattodo = io.chooseList("What do you do?", )
+    if player.state.get("holdingwater") == True:
+        options.insert(1, "Pour water on lock")
+    whattodo = io.chooseList("What do you do?", options)
     if whattodo == "Break the lock":
         io.narr("You try to break the lock, but it's too strong.")
     elif whattodo == "Pour water on lock":
@@ -43,7 +45,7 @@ def lookAtWaterCooler(player):
         io.narr("You decide you're not thirsty.")
 
 def drinkWater(player):
-    if player.state["holdingwater"] == True:
+    if player.state.get("holdingwater") == True:
         player.state["holdingwater"] = False
         io.narr("You drink the water, quenching your thirst.")
 
@@ -63,6 +65,8 @@ def create(player):
     |_ = Wall
     """
 
+
+    #TODO: Look at sign action
     actions = [
         ("Look at lock", lookAtLock),
         ("Look at water cooler", lookAtWaterCooler)
