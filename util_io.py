@@ -65,7 +65,7 @@ def ask(question) -> str:
     return answer
 
 #Creature dialogue
-def dialogue(creature, *args, waitForInput=True):
-    print(f"{Fore.CYAN}{creature.name}> {Style.RESET_ALL}", *args, end="", flush=True)
+def dialogue(name, *args, waitForInput=True):
+    print(f"{Fore.CYAN}{name}> {Style.RESET_ALL}", *args, end="", flush=True)
     if waitForInput:
         getpass("")

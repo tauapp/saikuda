@@ -20,13 +20,13 @@ import time
 import rooms.mountain.start as start
 
 init(autoreset = True)
+os.system("clear")
 io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
-io.narr("I know this is poorly timed, but when you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", it means you must press [Enter] to continue. This is one of those sentences!\n(On some platforms like Repl.it, you will have to click the text once before you can interact with the game.)")
-io.narr("Anyways, it’s time for you to choose a name. Don't bother about the logistics of how this will work.")
-io.narr("Also, don’t put a really stupid name, because that joke will get old really quickly.")
+io.narr("I know this is poorly timed, but when you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", it means you must press [Enter] to continue. This is one of those sentences!\n(On some platforms like Repl.it, you will have to click the text once before you can interact with the game.)\n")
+io.narr("Before you start the game, please enter a name. (Press [Enter] to continue)")
+io.narr("I know it may be tempting, but do not choose a joke name. It'll get old really quickly.")
 
 name = io.ask("Enter a name")
-io.narr("Let’s get started!")
 
 you = Creature(
   name = "You",
@@ -68,5 +68,5 @@ player = Player(
     )
   ]
 )
-
+os.system("clear")
 start.create(player).start()

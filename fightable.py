@@ -15,6 +15,8 @@ class Fightable:
 
     attack_str = 5
 
+    art = ""
+
     attack_list = []
 
     energy = 100
@@ -46,7 +48,7 @@ class Fightable:
         #If out of dialogue, say nothing
         if self.dialogueNumber == len(self.dialogues) - 1:
           return
-        io.dialogue(dialogue)
+        io.dialogue(self.name, dialogue)
 
 
 

@@ -26,8 +26,8 @@ class Battle:
         self.protagID = start
 
     def start(self):
-        io.say("The battle begins!")
         os.system("clear")
+        print(self.antag.art) if self.antag.art != "" else None
         self.antag.chooseDialogue()
         self.antag.enemy_report()
         print("")
@@ -67,8 +67,10 @@ class Battle:
                 self.protag.health = 0
                 break
             os.system("clear")
+            print(self.antag.art) if self.antag.art != "" else None
+            print("\n")
             self.antag.chooseDialogue()
-            print("")
+            print("\n")
             self.antag.enemy_report()
             print("")
             self.protag.report()

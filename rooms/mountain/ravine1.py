@@ -1,16 +1,25 @@
+from copy import deepcopy
+import os
 from attack import Attack
 from battle import Battle
 from fightable import Fightable
 from room import Room
 import util_io as io
+import rooms.mountain.puzzle1 as puzzle1
 
-def actions(player):
-    io.narr("You walk into a ravine. The walls are narrow, and there’s only one direction you can go.")
-    io.narr("At the end of the ravine, you can barely make out a large door.")
-    io.narr("Wait... what's that shadowy shape in your way?")
-    io.narr("You look closer...")
-    io.narr("It's a penguin... holding a comically large hammer?")
-    io.narr("It charges!")
+def scripts(player):
+
+    #Saved player object for respawns
+    save = deepcopy(player)
+
+    io.narr("You walk into a ravine.")
+    io.narr("It's cramped, cold, and quite frankly, scary to be in.")
+    io.narr("At the end of the ravine, you see a giant door.")
+    io.narr("Wait... what's that?")
+    io.narr("There's a shadowy figure blocking the way.")
+    io.narr("You look closer, trying to get a grasp on the creature's appearance.")
+    io.narr("It charges, and you realize...")
+    io.narr("It's an angry penguin, coming to finish you off!")
 
     penguin = Fightable(
         "Penguin",
@@ -20,7 +29,7 @@ def actions(player):
         attack = 5,
         attack_list=[
             Attack(
-                name="Hammer Smash",
+                name="Wing Attack",
                 intensity=3,
                 cost=15,
                 req=0
@@ -33,16 +42,28 @@ def actions(player):
     penguin.friendship = (0,3)
     penguin.conversations = [
         "You complement Penguin on its sleek feathers. It wholeheartedly agrees.",
-        "You asked Penguin where it got its hammer. You don't understand a word of what it said.",
-        "You asked Penguin if it likes to play video games. It mumbles something about a broken window.",
+        "You asked Penguin why it's fighting. You don't understand a word of what it said.",
+        "You asked Penguin what it likes to do in its free time. You don't understand a word of what it said.",
     ]
     penguin.dialogues = [
-        "Penguin stands proudly, and then falls over.",
+        "Penguin stands proudly.",
         "Penguin looks at you with a blank stare.",
-        "Penguin mumbles something about a broken window.",
+        "Penguin prepares its next attack.",
     ]
 
-    Battle(player, penguin).start()
+    penguin.art = """
+        __
+     -=(o '.
+        '.-.\\
+        /|  \\\\
+        '|  ||
+         _\_):,_
+    """
+
+    if not Battle(player, penguin).start():
+        io.narr("Respawning...")
+        os.system("clear")
+        return create(save).start()
     
 
 def create(player):
@@ -57,5 +78,5 @@ def create(player):
     """
     return Room(map, player, 
     enemychance=0, 
-    exits = {"South": None},
-    actions=actions)
+    exits = {"South": puzzle1.create(player)},
+    scripts=scripts)
