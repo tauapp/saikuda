@@ -12,7 +12,9 @@ git clone http://www.github.com/tauapp/saikuda.git
 cd saikuda
 ```
 On Fedora, replace `apt` with `dnf`
+
 On OpenSuse, replace `apt` with `zypper`
+
 On Arch, replace `apt install` with `pacman -S`
 
 To run Saikuda, enter the `saikuda` directory and run `python main.py`. This will install all necessary dependencies and run the application.
