@@ -5,11 +5,15 @@ Saikuda is a shortened form of the Japanese phrase Saiakuda Na (最悪だ な), 
 Saikuda is currently in development, so you'll need to install it manually.
 Saikuda at the moment only supports UNIX-like systems (Linux, MacOS, BSD). This is because of technical limitations with terminal support.
 
-To install Saikuda, run the following commands:
+To install Saikuda on Ubuntu, run the following commands:
 ```sh
+sudo apt install git
 git clone http://www.github.com/tauapp/saikuda.git
 cd saikuda
 ```
+On Fedora, replace `apt` with `dnf`
+On OpenSuse, replace `apt` with `zypper`
+On Arch, replace `apt install` with `pacman -S`
 
 To run Saikuda, enter the `saikuda` directory and run `python main.py`. This will install all necessary dependencies and run the application.
 
