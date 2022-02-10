@@ -1,5 +1,6 @@
 import util_io as io
 from room import Room
+import rooms.mountain.puzzle2 as puzzle2
 
 exits = {}
 
@@ -33,8 +34,7 @@ def lookAtLock(player):
             return
         io.narr("You see sparks coming out of the lock. It's been short-circuited!")
         player.state["holdingwater"] = False
-        #TODO: Next room
-        exits["South"] = None
+        exits["South"] = puzzle2.create(player)
         io.narr("You hear a click. The door opens!")
 
     else:

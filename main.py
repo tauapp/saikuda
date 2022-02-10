@@ -1,14 +1,15 @@
 import os
 
-from player import Player
 try:
-  __import__('_colorama')
+  __import__('colorama')
+  __import__('inquirer')
 except:
   print("Configuring...")
   os.system("pip install colorama")
   os.system("pip install inquirer")
   os.system("clear")
 
+from player import Player
 from _colorama import init, Fore, Style
 import util_io as io
 from creature import Creature
