@@ -17,7 +17,7 @@ On OpenSuse, replace `apt` with `zypper`
 
 On Arch, replace `apt install` with `pacman -S`
 
-To run Saikuda, enter the `saikuda` directory and run `python main.py`. This will install all necessary dependencies and run the application.
+To run Saikuda, enter the `saikuda` directory and run `python3 main.py`. This will install all necessary dependencies and run the application.
 
 To update Saikuda, run `sh update.sh` in the `saikuda` directory.
 ## Development Shortcuts
