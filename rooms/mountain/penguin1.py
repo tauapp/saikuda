@@ -20,7 +20,7 @@ def scripts(player):
     else:
         io.dialogue("???", "You don't want to fight, Well, maybe I should just let you free...")
         io.dialogue("???", "Just kidding! You think you can get away that easily?")
-        io.dialogue("???", "I'll anser that for you. You're not getting away. You're going to die.")
+        io.dialogue("???", "I'll answer that for you. You're not getting away. You're going to die.")
     io.dialogue("???", "Alright, enough blabbering. My soldiers, rage! My soldiers, fight!")
     io.narr("You hear squawks from the crowd, and you realize that they're penguins.")
     io.narr("Someone turns on the lights and you realize how outnumbered you are.")
