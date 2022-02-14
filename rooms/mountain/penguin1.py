@@ -37,7 +37,7 @@ def scripts(player):
     io.narr("A horde of penguins emerge from the room to search for you.")
     io.narr("They can't find you. Now's your chance.")
     escapetactic = io.chooseList("What do you do?", ["Sprint past Emperor Penguin", "Tiptoe past him like a coward"])
-    if escapetactic == "Sprint past Emperor Penguin":
+    if escapetactic == "Tiptoe past him like a coward":
         player.state["isCool"] = False
         io.narr("You delicately tiptoe past Emperor Penguin without making a sound.")
         io.narr("What a coward.")
