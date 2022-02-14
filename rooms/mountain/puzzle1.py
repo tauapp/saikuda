@@ -24,7 +24,8 @@ def lookAtLock(player):
         options.insert(1, "Pour water on lock")
     whattodo = io.chooseList("What do you do?", options)
     if whattodo == "Break the lock":
-        io.narr("You try to break the lock, but it's too strong.")
+        io.narr("You try to break the lock.")
+        io.narr("It isn't budging. It seems like you're not strong enough.")
     elif whattodo == "Pour water on lock":
         actions.remove(("Drink water", drinkWater))
         io.narr("You pour water on the lock.")
@@ -56,6 +57,7 @@ def drinkWater(player):
     if player.state.get("holdingwater") == True:
         player.state["holdingwater"] = False
         io.narr("You drink the water, quenching your thirst.")
+        io.narr("You feel refreshed, but that didn't help.")
         actions.remove(("Drink water", drinkWater))
 
 def lookAtSign(player):
@@ -84,9 +86,6 @@ def create(player):
     L = Locked Door
     |_ = Wall
     """
-
-
-    #TODO: Look at sign action
     
 
     return Room(map, player, 

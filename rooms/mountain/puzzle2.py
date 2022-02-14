@@ -2,6 +2,7 @@ import util_io as io
 from room import Room
 from player import Player
 from weapon import Weapon
+import rooms.mountain.penguin1 as penguin1
 
 def scripts(player: Player):
     io.narr("You walk through the door… and you’re in another room. Here we go again.")
@@ -47,6 +48,6 @@ def create(player):
         scripts = scripts,
         enemychance = 0,
         exits = {
-            "South": None
+            "South": penguin1.create(player)
         }
     )
