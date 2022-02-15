@@ -53,6 +53,7 @@ class Battle:
                     io.say(Fore.RED + self.antag.name, "didn't want to be spared!")
             #Check if the action type is attack
             elif dmg[0]:
+                print(dmg)
                 multiplier = io.slider(dmg[2])
                 if multiplier > 15:
                     print(Fore.GREEN + "Perfect Hit!")
