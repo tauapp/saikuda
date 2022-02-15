@@ -73,10 +73,10 @@ class Creature(Fightable):
     DEFENSE = Fore.GREEN + "DEFENSE" + Style.RESET_ALL
 
     #If the user defended last round, remove the defense
-    if self.reduceDefense:
-      self.defense /= 3
+    if self.reduceDefense != 0:
+      self.defense /= self.reduceDefense
       self.defense = round(self.defense)
-      self.reduceDefense = False
+      self.reduceDefense = 0
 
     pronoun = tuple()
     if self.name == "You":
@@ -97,9 +97,10 @@ class Creature(Fightable):
     elif choice == "Talk":
       return self.talk()
     elif choice == "Defend":
-      self.defense *= 3
-      io.say(pronoun[0], "defended, tripling", pronoun[1] + " " + DEFENSE + "!")
-      self.reduceDefense = True
+      
+      multiplier = io.slider(0.05)
+      self.defense *= multiplier
+      self.reduceDefense = multiplier
       return (False, 0)
     elif choice == "Item":
       if len(self.items) == 0:

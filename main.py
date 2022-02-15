@@ -3,10 +3,12 @@ import os
 try:
   __import__('colorama')
   __import__('inquirer')
+  __import__('blessed')
 except:
   print("Configuring...")
   os.system("pip install colorama")
   os.system("pip install inquirer")
+  os.system("pip install blessed")
   os.system("clear")
 
 from player import Player
@@ -23,7 +25,7 @@ import rooms.mountain.start as start
 init(autoreset = True)
 os.system("clear")
 io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
-io.narr("I know this is poorly timed, but when you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", it means you must press [Enter] to continue. This is one of those sentences!\n(On some platforms like Repl.it, you will have to click the text once before you can interact with the game.)\n")
+io.narr("When you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", press Enter to continue.")
 io.narr("Before you start the game, please enter a name. (Press [Enter] to continue)")
 io.narr("I know it may be tempting, but do not choose a joke name. It'll get old really quickly.")
 
@@ -33,12 +35,12 @@ you = Creature(
   name = "You",
   max_health = 20,
   max_energy = 20,
-  defense = 0,
+  defense = 1,
   attack = 5,
   attack_list = [
     Attack(
       name = "Punch",
-      intensity= 5,
+      intensity= 1,
       cost = 5,
       req = 0
     )
@@ -46,7 +48,7 @@ you = Creature(
   level = 0,
   exp = 0,
   leveltable = [
-    {"exp": 0, "energy": 20, "defense": 0, "attack": 5, "health": 20},
+    {"exp": 0, "energy": 20, "defense": 1, "attack": 5, "health": 20},
     {"exp": 10, "energy": 30, "defense": 5, "attack": 7, "health": 30},
     {"exp": 20, "energy": 40, "defense": 10, "attack": 10, "health": 40},
     {"exp": 30, "energy": 50, "defense": 15, "attack": 15, "health": 50},

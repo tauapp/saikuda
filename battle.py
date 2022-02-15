@@ -37,7 +37,8 @@ class Battle:
             if choice[0] == 2:
                 self.setProtag()
                 return self.start()
-            dmg = (choice[0], max(0, choice[1] - self.antag.defense))
+            dmg = (choice[0], max(0, choice[1]))
+            multiplier = 0
             #Check if the character betrayed the enemy
             if self.antag.sparable and dmg[0] == True:
                 io.say("It did " + Fore.RED + "999999999" + Style.RESET_ALL + " damage!")
@@ -52,17 +53,20 @@ class Battle:
                     io.say(Fore.RED + self.antag.name, "didn't want to be spared!")
             #Check if the action type is attack
             elif dmg[0]:
-                io.say("It did " + Fore.RED + str(int(dmg[1])) + Style.RESET_ALL + " damage!")
-            self.antag.health -= int(dmg[1])
+                multiplier = io.slider(0.05)
+                if multiplier > 15:
+                    print(Fore.GREEN + "Perfect Hit!")
+                io.say("It did " + Fore.RED + str(int((dmg[1] * multiplier) - self.antag.defense)) + Style.RESET_ALL + " damage!")
+                self.antag.health -= (int(dmg[1]) * multiplier) - self.antag.defense
             if self.antag.health <= 0:
                 self.antag.health = 0
                 break
             print("")
             choice = self.antag.chooseRandomAction()
-            dmg = (choice[0], max(0, choice[1] - self.protag.defense))
+            dmg = (choice[0], max(0, choice[1]))
             if dmg[0]:
-                io.say("It did " + Fore.RED + str(int(dmg[1])) + Style.RESET_ALL + " damage!")
-            self.protag.health -= int(dmg[1])
+                io.say("It did " + Fore.RED + str(int(dmg[1] - self.protag.defense)) + Style.RESET_ALL + " damage!")
+                self.protag.health -= int(dmg[1] - self.protag.defense * multiplier)
             if self.protag.health <= 0:
                 self.protag.health = 0
                 break
