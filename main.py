@@ -42,7 +42,8 @@ you = Creature(
       name = "Punch",
       intensity= 1,
       cost = 5,
-      req = 0
+      req = 0,
+      speed = 0.05
     )
   ],
   level = 0,

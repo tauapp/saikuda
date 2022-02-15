@@ -62,7 +62,7 @@ class Fightable:
         return (False, 0)
       self.energy -= att.cost
       io.say(self.name, "used", Fore.GREEN + att.name + Style.RESET_ALL + "!")
-      return (True, att.intensity * self.attack_str)
+      return (True, att.intensity * self.attack_str, att.speed)
 
     def chooseRandomAction(self):
       if self.sparable:

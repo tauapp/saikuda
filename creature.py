@@ -97,8 +97,9 @@ class Creature(Fightable):
     elif choice == "Talk":
       return self.talk()
     elif choice == "Defend":
-      
-      multiplier = io.slider(0.05)
+      multiplier = io.slider(self.battle.antag.attack_list[0].speed)
+      if multiplier > 15:
+        print(Fore.GREEN + "Perfect block!")
       self.defense *= multiplier
       self.reduceDefense = multiplier
       return (False, 0)
