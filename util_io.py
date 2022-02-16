@@ -139,4 +139,4 @@ def slider(interval):
 
 def clear():
   global term
-  term.clear()
+  print(term.clear)
