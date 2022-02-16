@@ -26,7 +26,7 @@ class Battle:
         self.protagID = start
 
     def start(self):
-        os.system("clear")
+        io.clear()
         print(self.antag.art) if self.antag.art != "" else None
         self.antag.chooseDialogue()
         self.antag.enemy_report()
@@ -53,7 +53,6 @@ class Battle:
                     io.say(Fore.RED + self.antag.name, "didn't want to be spared!")
             #Check if the action type is attack
             elif dmg[0]:
-                print(dmg)
                 multiplier = io.slider(choice[2])
                 if multiplier > 15:
                     print(Fore.GREEN + "Perfect Hit!")
@@ -71,7 +70,7 @@ class Battle:
             if self.protag.health <= 0:
                 self.protag.health = 0
                 break
-            os.system("clear")
+            io.clear()
             print(self.antag.art) if self.antag.art != "" else None
             print("\n")
             self.antag.chooseDialogue()
@@ -87,7 +86,7 @@ class Battle:
             return True
         else:
             print("")
-            os.system("clear")
+            io.clear()
             self.protag.report()
             io.narr(Fore.RED + self.protag.name + " died!")
             self.protaglist.pop(self.protagID)

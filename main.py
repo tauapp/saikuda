@@ -23,7 +23,7 @@ import time
 import rooms.mountain.start as start
 
 init(autoreset = True)
-os.system("clear")
+io.clear()
 io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
 io.narr("When you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", press Enter to continue.")
 io.narr("Before you start the game, please enter a name. (Press [Enter] to continue)")
@@ -72,5 +72,5 @@ player = Player(
     )
   ]
 )
-os.system("clear")
+io.clear()
 start.create(player).start()

@@ -63,7 +63,7 @@ def scripts(player):
 
     if not Battle(player, penguin).start():
         io.narr("Respawning...")
-        os.system("clear")
+        io.clear()
         return create(save).start()
     
 

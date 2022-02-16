@@ -22,7 +22,7 @@ class Room:
         self.actions = actions
 
     def start(self):
-        os.system("clear")
+        io.clear()
         print(self.map + "\n")
         #Run any custom actions provided for the room
         self.scripts(self.player)
@@ -31,7 +31,7 @@ class Room:
         self.choose()
 
     def choose(self):
-        os.system("clear")
+        io.clear()
         choices = [("Check Stats", )]
         if self.exits != {}:
             choices.append(("Move", ))
@@ -43,7 +43,7 @@ class Room:
             room = self.exits[io.chooseList("Where do you want to go?", self.exits.keys())]
             return room.start()
         elif choice == "Check Stats":
-            os.system("clear")
+            io.clear()
             player = self.player.creatures[0]
             print("\nAttack Strength:", player.attack_str)
             print("Defense:", player.defense)

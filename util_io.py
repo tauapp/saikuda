@@ -136,3 +136,7 @@ def slider(interval):
     
   multiplier = max((26 - accuracy) * increaser, 0)/5
   return multiplier
+
+def clear():
+  global term
+  term.clear()
