@@ -2,6 +2,7 @@ import os
 from battle import Battle
 import util_io as io
 import random
+from _colorama import Fore, Style
 
 class Room:
 
@@ -34,7 +35,7 @@ class Room:
         io.clear()
         choices = [("Check Stats", )]
         if self.exits != {}:
-            choices.append(("Move", ))
+            choices.insert(0, ("Move", ))
         if self.actions != []:
             #Merge actions and choices list
             choices.extend(self.actions)
@@ -45,16 +46,16 @@ class Room:
         elif choice == "Check Stats":
             io.clear()
             player = self.player.creatures[0]
-            print("\nAttack Strength:", player.attack_str)
-            print("Defense:", player.defense)
-            print("Health:", player.health)
-            print("Energy:", player.energy)
-            print("Level:", player.level)
-            print("EXP to next level:", player.leveltable[player.level + 1]["exp"] - player.exp)
-            print("Weapon:", player.weapon.name, "( Attack Multiplier:", player.weapon.multiplier, ")")
-            print("Armor:", player.armor.name, "( Defense Multiplier:", player.armor.multiplier, ")")
-            print("Aurum:", self.player.aurum)
-            input("\nPress enter to continue...")
+            print(f"\n{Fore.RED}Attack Strength:{Style.RESET_ALL}", player.attack_str)
+            print(f"{Fore.GREEN}Defense:{Style.RESET_ALL}", player.defense)
+            print(f"{Fore.RED}Health:{Style.RESET_ALL}", player.health)
+            print(f"{Fore.BLUE}Energy:{Style.RESET_ALL}", player.energy)
+            print(f"{Fore.YELLOW}Level:{Style.RESET_ALL}", player.level)
+            print(f"{Fore.YELLOW}EXP to next level:{Style.RESET_ALL}", player.leveltable[player.level + 1]["exp"] - player.exp)
+            print(f"{Fore.RED}Weapon:{Style.RESET_ALL}", player.weapon.name, "( Attack Multiplier:", player.weapon.multiplier, ")")
+            print(f"{Fore.BLUE}Armor:{Style.RESET_ALL}", player.armor.name, "( Defense Multiplier:", player.armor.multiplier, ")")
+            print(f"{Fore.YELLOW}Aurum:{Style.RESET_ALL}", self.player.aurum)
+            input(f"\nPress enter to continue...")
             return self.choose()
         else:
             chosen = [x for x in self.actions if x[0] == choice][0]

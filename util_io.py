@@ -93,7 +93,6 @@ def getcolor(position):
 
 def movebar(timeout, position):
   global term
-  #Amongus
   sys.stderr.write(term.move_down(3)+term.move_up()+"█"+term.move_up()+term.move_left()+"█"+term.move_up()+term.move_left()+"█")
   sys.stderr.flush()
   v = term.inkey(timeout=timeout)
@@ -113,14 +112,13 @@ def slider(interval):
   accuracy = 26
   pos = 0
   
-  with term.location():
-    with term.cbreak():
-      with term.hidden_cursor():
-        for i in range(50): 
-          if movebar(interval, i):
-            pos = i
-            accuracy = abs(i-25)
-            break
+  with term.location(), term.cbreak(), term.hidden_cursor():
+    sys.stderr.write(term.move_up(3))
+    for i in range(50): 
+      if movebar(interval, i):
+        pos = i
+        accuracy = abs(i-25)
+        break
   term.move_down(4)
   print(term.normal)
 

@@ -19,10 +19,10 @@ def scripts(player):
     io.narr("There's a shadowy figure blocking the way.")
     io.narr("You look closer, trying to get a grasp on the creature's appearance.")
     io.narr("It charges, and you realize...")
-    io.narr("It's an angry penguin, coming to finish you off!")
+    io.narr("It's an angry creature, coming to finish you off!")
 
     penguin = Fightable(
-        "Penguin",
+        "Pinko",
         max_health=50,
         max_energy = 25,
         defense = 0,
@@ -42,14 +42,14 @@ def scripts(player):
     )
     penguin.friendship = (0,3)
     penguin.conversations = [
-        "You complement Penguin on its sleek feathers. It wholeheartedly agrees.",
-        "You asked Penguin why it's fighting. You don't understand a word of what it said.",
-        "You asked Penguin what it likes to do in its free time. You don't understand a word of what it said.",
+        "You complement Pinko on its sleek feathers. It wholeheartedly agrees.",
+        "You asked Pinko why it's fighting. You don't understand a word of what it said.",
+        "You asked Pinko what it likes to do in its free time. You don't understand a word of what it said.",
     ]
     penguin.dialogues = [
-        "Penguin stands proudly.",
-        "Penguin looks at you with a blank stare.",
-        "Penguin prepares its next attack.",
+        "Pinko stands proudly.",
+        "Pinko looks at you with a blank stare.",
+        "Pinko prepares its next attack.",
     ]
 
     penguin.art = """

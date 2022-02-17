@@ -66,7 +66,7 @@ class Battle:
             dmg = (choice[0], max(0, choice[1]))
             if dmg[0]:
                 io.say("It did " + Fore.RED + str(int(dmg[1] - self.protag.defense)) + Style.RESET_ALL + " damage!")
-                self.protag.health -= int(dmg[1] - self.protag.defense * multiplier)
+                self.protag.health -= int(dmg[1] - self.protag.defense)
             if self.protag.health <= 0:
                 self.protag.health = 0
                 break
