@@ -33,7 +33,7 @@ class Room:
 
     def choose(self):
         io.clear()
-        choices = [("Check Stats", )]
+        choices = [("Check stats", )]
         if self.exits != {}:
             choices.insert(0, ("Move", ))
         if self.actions != []:
@@ -43,18 +43,18 @@ class Room:
         if choice == "Move":
             room = self.exits[io.chooseList("Where do you want to go?", self.exits.keys())]
             return room.start()
-        elif choice == "Check Stats":
+        elif choice == "Check stats":
             io.clear()
             player = self.player.creatures[0]
-            print(f"\n{Fore.RED}Attack Strength:{Style.RESET_ALL}", player.attack_str)
-            print(f"{Fore.GREEN}Defense:{Style.RESET_ALL}", player.defense)
-            print(f"{Fore.RED}Health:{Style.RESET_ALL}", player.health)
-            print(f"{Fore.BLUE}Energy:{Style.RESET_ALL}", player.energy)
-            print(f"{Fore.YELLOW}Level:{Style.RESET_ALL}", player.level)
+            print(f"\n{Fore.RED}Attack Strength:{Style.RESET_ALL}", int(player.attack_str))
+            print(f"{Fore.GREEN}Defense:{Style.RESET_ALL}", int(player.defense))
+            print(f"{Fore.RED}Health:{Style.RESET_ALL} {int(player.health)}/{player.max_health}")
+            print(f"{Fore.BLUE}Energy:{Style.RESET_ALL} {int(player.energy)}/{player.max_energy}")
+            print(f"{Fore.YELLOW}Level:{Style.RESET_ALL}", int(player.level))
             print(f"{Fore.YELLOW}EXP to next level:{Style.RESET_ALL}", player.leveltable[player.level + 1]["exp"] - player.exp)
             print(f"{Fore.RED}Weapon:{Style.RESET_ALL}", player.weapon.name, "( Attack Multiplier:", player.weapon.multiplier, ")")
             print(f"{Fore.BLUE}Armor:{Style.RESET_ALL}", player.armor.name, "( Defense Multiplier:", player.armor.multiplier, ")")
-            print(f"{Fore.YELLOW}Aurum:{Style.RESET_ALL}", self.player.aurum)
+            print(f"{Fore.YELLOW}Aurum:{Style.RESET_ALL}", int(self.player.aurum))
             input(f"\nPress enter to continue...")
             return self.choose()
         else:

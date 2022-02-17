@@ -76,7 +76,7 @@ def scripts(player):
     nextroom = puzzle1.create(player)
 
     openit = io.chooseList("Open the door?", ["Yes", "No"])
-    exits["South"] = nextroom
+    exits["Through the door"] = nextroom
     if openit == "Yes":
         io.narr("You step inside.")
         return nextroom.start()

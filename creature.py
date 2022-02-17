@@ -57,13 +57,13 @@ class Creature(Fightable):
     self.defense /= self.armor.multiplier
     self.armor = armor
     self.defense *= self.armor.multiplier
-    io.narr(self.name, "equipped the", armor.name + "!")
+    io.narr("[" + self.name, "equipped the", armor.name + ".]")
   
   def equipWeapon(self, weapon):
     self.attack_str /= self.weapon.multiplier
     self.weapon = weapon
     self.attack_str *= self.weapon.multiplier
-    io.narr(self.name, "equipped the", weapon.name + "!")
+    io.narr("[" + self.name, "equipped the", weapon.name + ".]")
 
   def chooseAction(self):
 
