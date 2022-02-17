@@ -48,6 +48,7 @@ class Battle:
                 if self.antag.sparable:
                     io.narr(Fore.GREEN + self.antag.name, "was spared!")
                     self.protag.reward(self.player, exp = round(self.antag.max_energy / 2), money = round(self.antag.max_health / 10))
+                    io.clear()
                     return True
                 else:
                     io.say(Fore.RED + self.antag.name, "didn't want to be spared!")
@@ -83,6 +84,7 @@ class Battle:
             self.antag.enemy_report()
             io.narr(Fore.GREEN +"You win!")
             self.protag.reward(self.player, exp = self.antag.max_energy, money = round(self.antag.max_health / 5))
+            io.clear()
             return True
         else:
             print("")
@@ -94,4 +96,5 @@ class Battle:
                 self.setProtag()
                 self.start()
             else:
+                io.clear()
                 return False
