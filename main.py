@@ -27,7 +27,6 @@ io.clear()
 io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
 io.narr("When you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", press Enter to continue.")
 io.narr("Before you start the game, please enter a name. (Press [Enter] to continue)")
-io.narr("I know it may be tempting, but do not choose a joke name. It'll get old really quickly.")
 
 name = io.ask("Enter a name")
 

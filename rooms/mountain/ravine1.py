@@ -12,14 +12,9 @@ def scripts(player):
     #Saved player object for respawns
     save = deepcopy(player)
 
-    io.narr("You walk into a ravine.")
-    io.narr("It's cramped, cold, and quite frankly, scary to be in.")
-    io.narr("At the end of the ravine, you see a giant door.")
-    io.narr("Wait... what's that?")
-    io.narr("There's a shadowy figure blocking the way.")
-    io.narr("You look closer, trying to get a grasp on the creature's appearance.")
-    io.narr("It charges, and you realize...")
-    io.narr("It's an angry creature, coming to finish you off!")
+    io.narr("You walk into a ravine. It's narrow and cold.")
+    look = io.chooseList("What do you do?", ["Rush forward", "Look ahead"])
+    if look == ""
 
     penguin = Fightable(
         "Pinko",
@@ -79,5 +74,5 @@ def create(player):
     """
     return Room(map, player, 
     enemychance=0, 
-    exits = {"South": puzzle1.create(player)},
+    exits = {},
     scripts=scripts)
