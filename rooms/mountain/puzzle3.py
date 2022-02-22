@@ -10,7 +10,18 @@ def scripts(player):
     io.narr("There's a small kitchen with a fridge, cabinet, and stove.")
 
 def lookAtCabinet(player):
-    pass
+    global roomstate
+    if roomstate.get("cabinetHasPot"):
+        io.narr("You open the cabinet. There's a pot inside.")
+        takepot = io.chooseList("Take it?", ["Yes", "No"])
+        if takepot == "Yes":
+            player.state["holdingpot"] = 1
+            roomstate["cabinetHasPot"] = False
+            io.narr("You take the pot.")
+        else:
+            io.narr("You leave the cabinet alone.")
+    else:
+        io.narr("The cabinet's empty.")
 
 def lookAtDoor(player):
     io.narr("This door also appears to have an electric lock.")
@@ -45,6 +56,8 @@ actions = [
 def create(player):
     global exits
     global actions
+    global roomstate
+    roomstate["cabinetHasPot"] = True
     map = """
     ____________________
     |                  |

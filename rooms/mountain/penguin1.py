@@ -1,5 +1,6 @@
 import util_io as io
 from room import Room
+import rooms.mountain.puzzle3 as puzzle3
 
 def scripts(player):
     io.narr("You enter a new room.")
@@ -44,8 +45,7 @@ def scripts(player):
         io.narr("You do a flip in the air, attempting to land gracefully...")
         io.narr("Only to land on your face. Ouch. That hurt.")
         io.narr("You're now in the next room.")
-
-    #TODO: Autotransport to next room
+    return puzzle3.create(player).start()
 
 def create(player):
     map = """
