@@ -1,5 +1,5 @@
 import util_io as io
-import room as Room
+from room import Room
 
 exits = dict()
 roomstate = dict()
@@ -37,6 +37,7 @@ def lookAtDoor(player):
         io.narr("You pour water on the lock.")
         player.state["holdingpot"] = 1
         io.narr("You see sparks coming out of the lock. It's been short-circuited!")
+        exits["Next room"] = None
     else:
         io.narr("You leave the door alone.")
 
@@ -49,6 +50,7 @@ def lookAtStove(player):
     
     #For quality of life, you continue to work on the stove until you leave it.
     def stovework():
+        io.clear()
 
         #Choices
         stovechoices = []
@@ -62,12 +64,12 @@ def lookAtStove(player):
             stovechoices.append("Take pot off stove")
             if player.state.get("holdingblockofice"):
                 stovechoices.append("Put ice in pot")
-        stovechoices.append("Nothing")
+        stovechoices.append("Leave stove")
 
         whattostove = io.chooseList("What do you do?", stovechoices)
         if whattostove == "Turn on stove":
             roomstate["stoveOn"] = True
-            player.state["stoveslefton"] += 1
+            player.state["stoveslefton"] = 1
             io.narr("You turned on the stove.")
             if roomstate.get("potOnStove") and roomstate.get("potHasIce"):
                 io.narr("The ice in the pot melted into water!")
@@ -76,12 +78,12 @@ def lookAtStove(player):
             return stovework()
         elif whattostove == "Turn off stove":
             roomstate["stoveOff"] = False
-            player.state["stovesleftoff"] -= 1
+            player.state["stoveslefton"] = 0
             io.narr("You turned the stove off.")
             return stovework()
         elif whattostove == "Put pot on stove":
             player.state["holdingpot"] = False
-            roomstate["potOnStove"] = False
+            roomstate["potOnStove"] = True
             io.narr("You put the pot on the stove.")
             return stovework()
         elif whattostove == "Take pot off stove":
@@ -99,6 +101,7 @@ def lookAtStove(player):
                 io.narr("The ice in the pot melted into water!")
                 roomstate["potHasIce"] = False
                 roomstate["potHasWater"] = True
+            return stovework()
         else:
             io.narr("You leave the stove alone.")
             return

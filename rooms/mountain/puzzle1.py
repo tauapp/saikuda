@@ -42,6 +42,9 @@ def lookAtWaterCooler(player):
     io.narr("The water cooler has a stack of foam cups next to it.")
     takeaglass = io.chooseList("Do you take a glass?", ["Yes", "No"])
     if takeaglass == "Yes":
+        if player.state.get("holdingwater"):
+            io.narr("You are already holding water.")
+            return
         io.narr("You take a glass and fill it with refreshing water.")
         player.state["holdingwater"] = True
         actions.append(("Drink water", drinkWater))
