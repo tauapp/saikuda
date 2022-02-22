@@ -44,7 +44,69 @@ def lookAtSign(player):
     io.dialogue("Sign", "Didn't you learn anything from the last puzzle?")
 
 def lookAtStove(player):
-    pass
+    global roomstate
+    io.narr("It's a stove. Not very interesting.")
+    
+    #For quality of life, you continue to work on the stove until you leave it.
+    def stovework():
+
+        #Choices
+        stovechoices = []
+        if roomstate.get("stoveOn"):
+            stovechoices.append("Turn off stove")
+        else:
+            stovechoices.append("Turn on stove")
+        if player.state.get("holdingpot") == 1:
+            stovechoices.append("Put pot on stove")
+        if roomstate.get("potOnStove"):
+            stovechoices.append("Take pot off stove")
+            if player.state.get("holdingblockofice"):
+                stovechoices.append("Put ice in pot")
+        stovechoices.append("Nothing")
+
+        whattostove = io.chooseList("What do you do?", stovechoices)
+        if whattostove == "Turn on stove":
+            roomstate["stoveOn"] = True
+            player.state["stoveslefton"] += 1
+            io.narr("You turned on the stove.")
+            if roomstate.get("potOnStove") and roomstate.get("potHasIce"):
+                io.narr("The ice in the pot melted into water!")
+                roomstate["potHasIce"] = False
+                roomstate["potHasWater"] = True
+            return stovework()
+        elif whattostove == "Turn off stove":
+            roomstate["stoveOff"] = False
+            player.state["stovesleftoff"] -= 1
+            io.narr("You turned the stove off.")
+            return stovework()
+        elif whattostove == "Put pot on stove":
+            player.state["holdingpot"] = False
+            roomstate["potOnStove"] = False
+            io.narr("You put the pot on the stove.")
+            return stovework()
+        elif whattostove == "Take pot off stove":
+            if roomstate.get("potHasWater"):
+                player.state["holdingpot"] = 2
+            else:
+                player.state["holdingpot"] = 1
+            io.narr("You took the pot off the stove.")
+            return stovework()
+        elif whattostove == "Put ice in pot":
+            player.state["holdingblockofice"] = False
+            roomstate["potHasIce"] = True
+            io.narr("You put the block of ice in the pot.")
+            if roomstate.get("stoveOn"):
+                io.narr("The ice in the pot melted into water!")
+                roomstate["potHasIce"] = False
+                roomstate["potHasWater"] = True
+        else:
+            io.narr("You leave the stove alone.")
+            return
+
+    stovework()
+        
+    
+
 
 def lookAtFridge(player):
     global roomstate
