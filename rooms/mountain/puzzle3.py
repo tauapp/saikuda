@@ -2,6 +2,7 @@ import util_io as io
 import room as Room
 
 exits = dict()
+roomstate = dict()
 
 def scripts(player):
     io.narr("Phew. That was close.")
@@ -12,16 +13,33 @@ def lookAtCabinet(player):
     pass
 
 def lookAtDoor(player):
-    pass
+    io.narr("This door also appears to have an electric lock.")
+    #The holdingpot state returns 1 if player is holding a pot with air or ice, 2 if the pot has water.
+    choices = ["Break the lock", "Nothing"]
+    if player.state.get("holdingpot") == 2:
+        choices.insert(1, "Pour water on lock")
+    whattodo = io.chooseList("What do you do?", choices)
+    if whattodo == "Break the lock":
+        io.narr("You try to break the lock.")
+        io.narr("It isn't budging. It seems like you're not strong enough.")
+    elif whattodo == "Pour water on lock":
+        io.narr("You pour water on the lock.")
+        player.state["holdingpot"] = 1
+        io.narr("You see sparks coming out of the lock. It's been short-circuited!")
+    else:
+        io.narr("You leave the door alone.")
 
 def lookAtSign(player):
-    pass
+    io.dialogue("Sign", "Didn't you learn anything from the last puzzle?")
 
 def lookAtStove(player):
     pass
 
 actions = [
-    
+    ("Look at sign", lookAtSign),
+    ("Look at door", lookAtDoor),
+    ("Look at cabinet", lookAtCabinet),
+    ("Look at stove", lookAtStove)
 ]
 
 def create(player):
