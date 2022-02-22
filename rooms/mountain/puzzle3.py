@@ -87,6 +87,7 @@ def lookAtStove(player):
             io.narr("You put the pot on the stove.")
             return stovework()
         elif whattostove == "Take pot off stove":
+            roomstate["potOnStove"] = False
             if roomstate.get("potHasWater"):
                 player.state["holdingpot"] = 2
             else:
