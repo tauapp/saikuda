@@ -46,11 +46,27 @@ def lookAtSign(player):
 def lookAtStove(player):
     pass
 
+def lookAtFridge(player):
+    io.narr("The fridge is empty.")
+    checkfreezer = io.chooseList("Check the freezer?", ["Yes", "No"])
+    if checkfreezer == "Yes":
+        io.narr("You open the freezer.")
+        io.narr("What's this? There's a block of ice in there.")
+        pickupice = io.chooseList("Pick it up?", ["Yes", "No"])
+        if pickupice == "Yes":
+            player.state["holdingblockofice"] = True
+            io.narr("You pick up the block of ice.")
+        else:
+            io.narr("You leave it alone.")
+    else:
+        io.narr("You leave the fridge alone.")
+
 actions = [
     ("Look at sign", lookAtSign),
     ("Look at door", lookAtDoor),
     ("Look at cabinet", lookAtCabinet),
-    ("Look at stove", lookAtStove)
+    ("Look at stove", lookAtStove),
+    ("Look at fridge", lookAtFridge)
 ]
 
 def create(player):
