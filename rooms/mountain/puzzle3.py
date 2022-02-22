@@ -47,14 +47,19 @@ def lookAtStove(player):
     pass
 
 def lookAtFridge(player):
+    global roomstate
     io.narr("The fridge is empty.")
     checkfreezer = io.chooseList("Check the freezer?", ["Yes", "No"])
+    if roomstate.get("freezerHasIce") == False:
+        io.narr("The freezer's empty too.")
+        return
     if checkfreezer == "Yes":
         io.narr("You open the freezer.")
         io.narr("What's this? There's a block of ice in there.")
         pickupice = io.chooseList("Pick it up?", ["Yes", "No"])
         if pickupice == "Yes":
             player.state["holdingblockofice"] = True
+            roomstate["freezerHasIce"] = False
             io.narr("You pick up the block of ice.")
         else:
             io.narr("You leave it alone.")
@@ -74,6 +79,7 @@ def create(player):
     global actions
     global roomstate
     roomstate["cabinetHasPot"] = True
+    roomstate["freezerHasIce"] = True
     map = """
     ____________________
     |                  |
