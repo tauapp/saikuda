@@ -25,7 +25,7 @@ def lookAtDoor(player):
     opts = ["Break the lock", "Leave it alone"]
     #holdingStick returns 1 if player is holding a stick, 2 if the stick is on fire.
     if player.state.get("holdingStick") == 2:
-        opts.prepend("Burn down door")
+        opts.insert(0, "Burn down door")
     choice = io.chooseList("What do you do?", opts)
     if choice == "Break the lock":
         io.narr("You try to break the lock.")
