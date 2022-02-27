@@ -47,6 +47,6 @@ def create(player):
     return Room(map, player,
         scripts = scripts,
         exits = {
-            "Next Room": puzzle4.create()
+            "Next Room": puzzle4.create(player)
         }
     )
