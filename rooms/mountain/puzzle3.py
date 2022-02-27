@@ -1,5 +1,6 @@
 import util_io as io
 from room import Room
+import rooms.mountain.penguin2 as penguin2
 
 exits = dict()
 roomstate = dict()
@@ -37,7 +38,7 @@ def lookAtDoor(player):
         io.narr("You pour water on the lock.")
         player.state["holdingpot"] = 1
         io.narr("You see sparks coming out of the lock. It's been short-circuited!")
-        exits["Next room"] = None
+        exits["Next room"] = penguin2.create(player)
     else:
         io.narr("You leave the door alone.")
 
