@@ -1,9 +1,10 @@
 from room import Room
 import util_io as io
-from _blessed import Teminal
+from _blessed import Terminal
+import rooms.mountain.puzzle4 as puzzle4
 
 def scripts(player):
-    term = Teminal()
+    term = Terminal()
     io.narr("You walk into the next room.")
     io.narr("Oh no.")
     io.narr("It seems like you've walked right into the Emperor's flippers.")
@@ -46,6 +47,6 @@ def create(player):
     return Room(map, player,
         scripts = scripts,
         exits = {
-            "Next Room": None
+            "Next Room": puzzle4.create()
         }
     )
