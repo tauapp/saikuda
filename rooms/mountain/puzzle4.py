@@ -83,6 +83,7 @@ def lookAtLeaves(player):
 actions = [
     ("Look at sign", readSign),
     ("Look at door", lookAtDoor),
+    ("Look at stove", lookAtStove)
     ("Look at leaves", lookAtLeaves)
 ]
 
