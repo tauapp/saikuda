@@ -12,11 +12,8 @@ def scripts(player):
     io.narr("There's a stove, a sign, and a random pile of leaves.")
 
 def readSign(player):
-    io.dialogue("Sign", "Good luck solving this puzzle, because I know you can't.")
-    io.dialogue("Sign", "What do you mean I'm not being helpful?")
-    io.dialogue("Sign", "Do you know the things I go through every day...")
-    io.narr("The sign goes on and on about why it doesn't want to help.")
-    io.narr("You get bored and decide to stop reading it.")
+    io.dialogue("Sign", "Use the wood to destroy the wood.")
+    io.dialogue("Sign", "A certain junk grows from the wood. Inside the junk you can find the wood.")
 
 def lookAtDoor(player):
     global exits

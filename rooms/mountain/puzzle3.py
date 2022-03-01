@@ -43,7 +43,7 @@ def lookAtDoor(player):
         io.narr("You leave the door alone.")
 
 def lookAtSign(player):
-    io.dialogue("Sign", "Didn't you learn anything from the last puzzle?")
+    io.dialogue("Sign", "Electricity's worst enemy has three personalities.")
 
 def lookAtStove(player):
     global roomstate
