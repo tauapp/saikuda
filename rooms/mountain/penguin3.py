@@ -1,7 +1,12 @@
 import io as util_io
 from room import Room
+from fightable import Fightable
+from attack import Attack
+from copy import deepcopy
 
 def scripts(player):
+    save = deepcopy(player)
+
     io.narr("You're in the next room.")
     io.narr("Guess who it is this time.")
     io.dialogue("Emperor Pinko", "YOU.")
@@ -20,7 +25,66 @@ def scripts(player):
         io.dialogue("Emperor Pinko", "You humiliate me twice, and you tell me to knock it off?")
         io.dialogue("Emperor Pinko", "THATS IT! You're finished.")
     io.dialogue("Emperor Pinko", "Say goodbye.")
-    
+
+    emperor = Fightable(
+        "Emperor Pinko",
+        max_health=1000,
+        max_energy=1000,
+        defense=50,
+        attack=10,
+        attack_list=[
+            Attack(
+                "Peck",
+                2,
+                50,
+                0,
+                0.03
+            ),
+            Attack(
+                "Wing Attack",
+                6,
+                100,
+                0,
+                0.05
+            ),
+            Attack(
+                "Ice Storm",
+                30,
+                950,
+                0.04
+            )
+        ],
+        level=0,
+        exp=0,
+        leveltable=[
+            #TODO: Finish this
+        ]
+    )
+
+    emperor.friendship = (0, 15)
+    emperor.conversations = [
+        #TODO
+    ]
+
+    emperor.dialogues = [
+        #TODO
+    ]
+
+    emperor.randomizeDialogue = False
+
+    emperor.art = """
+        __
+     -=(o '.
+        '.-.\\
+        /|  \\\\
+        '|  ||
+         _\_):,_
+    """
+
+    if not Battle(player, penguin).start():
+        io.narr("Respawning...")
+        io.clear()
+        return create(save).start()
 
 def create(player):
     map = """

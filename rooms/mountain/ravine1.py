@@ -36,7 +36,6 @@ def scripts(player):
                 name="Wing Attack",
                 intensity=3,
                 cost=15,
-                req=0,
                 speed=0.05
             )
         ],
