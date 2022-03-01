@@ -43,10 +43,33 @@ def buyCandy(player):
         io.dialogue("Sollivan", "That's a shame. They're pretty good.")
 
 def talk(player):
-    pass
+    topic = io.chooseList("What do you want to talk about?", 
+    ["About Sollivan", "About the mountains", "About his van"])
+
+    if topic == "About Sollivan":
+        io.dialogue("Sollivan", "Me, huh?")
+        io.dialogue("Sollivan", "Name's Sollivan Tude, but you can call me Solly.")
+        io.dialogue("Sollivan", "Used to operate in the Capital, but apparently selling candy in vans is suspicious.")
+        io.dialogue("Sollivan", "What a world we live in, huh?")
+        io.dialogue("Sollivan", "I haven't seen anyone in ages and I'm freezing all the time, buy hey.")
+        io.dialogue("Sollivan", "That beats getting the cops called on you every week, right?")
+    elif topic == "About the mountains":
+        io.dialogue("Sollivan", "Apparently, a lot of people like climbing down this mountain.")
+        io.dialogue("Sollivan", "You'd think more people would be going up, but apparently not.")
+        io.dialogue("Sollivan", "I only get two or three customers a year.")
+        io.dialogue("Sollivan", "That number sucks, but it's better than zero.")
+    else:
+        io.dialogue("Sollivan", "This van's pretty special to me, you know.")
+        io.dialogue("Sollivan", "It took a lot of luck to get to where I am today.")
+        io.dialogue("Sollivan", "You know, when I lived down in the Capital, I used to talk to some of the kids on the street.")
+        io.dialogue("Sollivan", "And I don't really know why, but their parents gave me money to stop.")
+        io.dialogue("Sollivan", "Eventually, I was able to buy this van, and here I am now.")
+        io.dialogue("Sollivan", "...")
+        io.dialogue("Sollivan", "It's all I have left now.")
 
 def leave(player):
-    pass
+    io.dialogue("Sollivan", "See you around.")
+    #TODO: Next room
 
 actions = [
     ("Buy candy", buyCandy),
