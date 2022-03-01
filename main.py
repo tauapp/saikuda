@@ -47,15 +47,15 @@ you = Creature(
   level = 0,
   exp = 0,
   leveltable = [
-    {"exp": 0, "energy": 20, "defense": 1, "attack": 5, "health": 20},
-    {"exp": 10, "energy": 30, "defense": 5, "attack": 7, "health": 30},
-    {"exp": 20, "energy": 40, "defense": 10, "attack": 10, "health": 40},
-    {"exp": 30, "energy": 50, "defense": 15, "attack": 15, "health": 50},
-    {"exp": 40, "energy": 60, "defense": 20, "attack": 20, "health": 60},
-    {"exp": 50, "energy": 70, "defense": 25, "attack": 25, "health": 70},
-    {"exp": 60, "energy": 80, "defense": 30, "attack": 30, "health": 80},
-    {"exp": 70, "energy": 90, "defense": 35, "attack": 35, "health": 90},
-    {"exp": 80, "energy": 100, "defense": 40, "attack": 40, "health": 100},
+    dict(),
+    {"exp": 10, "energy": 5, "defense": 5, "attack": 2, "health": 5},
+    {"exp": 20, "energy": 7, "defense": 7, "attack": 5, "health": 7},
+    {"exp": 30, "energy": 15, "defense": 15, "attack": 15, "health": 15},
+    {"exp": 40, "energy": 20, "defense": 20, "attack": 20, "health": 20},
+    {"exp": 50, "energy": 30, "defense": 30, "attack": 30, "health": 30},
+    {"exp": 60, "energy": 50, "defense": 50, "attack": 50, "health": 50},
+    {"exp": 70, "energy": 80, "defense": 80, "attack": 80, "health": 80},
+    {"exp": 80, "energy": 100, "defense": 100, "attack": 100, "health": 100},
   ]
 )
 
