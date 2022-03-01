@@ -1,6 +1,7 @@
 import util_io as io
 from room import Room
 from item import Item
+import rooms.mountain.penguin3 as penguin3
 
 def scripts(player):
     io.narr("You enter the next room.")
@@ -71,7 +72,7 @@ def talk(player):
 
 def leave(player):
     io.dialogue("Sollivan", "See you around.")
-    #TODO: Next room
+    return penguin3.create(player).start()
 
 actions = [
     ("Buy candy", buyCandy),
