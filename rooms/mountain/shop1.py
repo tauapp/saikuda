@@ -16,14 +16,16 @@ def buyCandy(player):
     io.dialogue("Sollivan", "Here's the price: 15 Aurum a candy. Take it or leave it.")
     if io.chooseList("What do you do?", ["Buy candy", "Don't buy some"]) == "Buy candy":
         while True:
-            io.dialogue("Sollivan", "How many do you want?", waitForInput=False)
-            print(f"(You have {player.aurum} Aurum.")
+            io.dialogue("Sollivan", "How many do you want?\n", waitForInput=False)
+            print(f"(You have {player.aurum} Aurum.)")
             numtobuy = io.ask("How many candies would you like to buy?")
             if not numtobuy.isdigit():
                 print("That's not a number.")
+                io.clear()
                 continue
             if int(numtobuy) * 15 > player.aurum:
                 print("You can't afford that many candies.")
+                io.clear()
                 continue
             player.aurum -= int(numtobuy) * 15
             for i in range(int(numtobuy)):
@@ -37,7 +39,7 @@ def buyCandy(player):
             if int(numtobuy) == 1:
                 io.narr("[You got a Hard Candy.]")
             else:
-                io.narr(f"[You got {int(numtobuy)} Hard Candies.")
+                io.narr(f"[You got {int(numtobuy)} Hard Candies.]")
     else:
         io.dialogue("Sollivan", "Passing up on the opportunity, huh?")
         io.dialogue("Sollivan", "That's a shame. They're pretty good.")
@@ -51,7 +53,7 @@ def talk(player):
         io.dialogue("Sollivan", "Name's Sollivan Tude, but you can call me Solly.")
         io.dialogue("Sollivan", "Used to operate in the Capital, but apparently selling candy in vans is suspicious.")
         io.dialogue("Sollivan", "What a world we live in, huh?")
-        io.dialogue("Sollivan", "I haven't seen anyone in ages and I'm freezing all the time, buy hey.")
+        io.dialogue("Sollivan", "I haven't seen anyone in ages and I'm freezing all the time, but hey.")
         io.dialogue("Sollivan", "That beats getting the cops called on you every week, right?")
     elif topic == "About the mountains":
         io.dialogue("Sollivan", "Apparently, a lot of people like climbing down this mountain.")
