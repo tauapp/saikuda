@@ -1,6 +1,6 @@
 from room import Room
 import util_io as io
-
+import rooms.mountain.shop1 as shop1
 
 exits = dict()
 roomState = {
@@ -30,7 +30,7 @@ def lookAtDoor(player):
     elif choice == "Burn down door":
         io.narr("You use your flaming stick to burn down the door.")
         io.narr("You can now move on the the next room!")
-        exits["Next room"] = None
+        exits["Next room"] = shop1.create(player)
     else:
         io.narr("You leave the door alone.")
 

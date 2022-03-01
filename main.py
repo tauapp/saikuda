@@ -64,11 +64,7 @@ player = Player(
   name=name,
   creatures=[you],
   items=[
-    Item(
-      "Chocolate",
-      5,
-      5
-    )
+
   ]
 )
 io.clear()
