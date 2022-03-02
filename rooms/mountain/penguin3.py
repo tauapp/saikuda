@@ -1,8 +1,9 @@
-import io as util_io
+import util_io as io
 from room import Room
 from fightable import Fightable
 from attack import Attack
 from copy import deepcopy
+from battle import Battle
 
 def scripts(player):
     save = deepcopy(player)
@@ -37,14 +38,12 @@ def scripts(player):
                 "Peck",
                 2,
                 50,
-                0,
                 0.03
             ),
             Attack(
                 "Wing Attack",
                 6,
                 100,
-                0,
                 0.05
             ),
             Attack(
@@ -63,11 +62,22 @@ def scripts(player):
 
     emperor.friendship = (0, 15)
     emperor.conversations = [
-        #TODO
+        "You tell Emperor Pinko that he doesn't need to fight.",
+        "You tell Emperor Pinko that you are innocent.",
+        "You ask Emperor Pinko about why he's fighting you.",
+        "You tell Emperor Pinko that you did nothing wrong."
     ]
 
     emperor.dialogues = [
         #TODO
+        "Among us sussy",
+        "Like the hit game among us",
+        "Ing dong lingus",
+        "Tetris is amingus",
+        "Fling flag fringo",
+        "Indigo",
+        "Rick rick ricko",
+        "Lim li la lo zee zo"
     ]
 
     emperor.randomizeDialogue = False
@@ -81,7 +91,7 @@ def scripts(player):
          _\_):,_
     """
 
-    if not Battle(player, penguin).start():
+    if not Battle(player, emperor).start():
         io.narr("Respawning...")
         io.clear()
         return create(save).start()

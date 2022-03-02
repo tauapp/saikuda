@@ -78,7 +78,7 @@ def lookAtStove(player):
                 roomstate["potHasWater"] = True
             return stovework()
         elif whattostove == "Turn off stove":
-            roomstate["stoveOff"] = False
+            roomstate["stoveOn"] = False
             player.state["stoveslefton"] = 0
             io.narr("You turned the stove off.")
             return stovework()
