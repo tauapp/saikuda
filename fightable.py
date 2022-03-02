@@ -48,7 +48,7 @@ class Fightable:
         #If out of dialogue, say nothing
         if self.dialogueNumber == len(self.dialogues) - 1:
           return
-        io.dialogue(self.name, dialogue, waitForInput=False)
+        io.dialogue(self.name, dialogue + "\n", waitForInput=False)
 
 
 

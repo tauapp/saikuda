@@ -41,6 +41,7 @@ def buyCandy(player):
                 io.narr("[You got a Hard Candy.]")
             else:
                 io.narr(f"[You got {int(numtobuy)} Hard Candies.]")
+            break
     else:
         io.dialogue("Sollivan", "Passing up on the opportunity, huh?")
         io.dialogue("Sollivan", "That's a shame. They're pretty good.")
