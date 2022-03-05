@@ -33,7 +33,6 @@ class Creature(Fightable):
     nextlevel = level + 1
     player.aurum += money
     if self.exp >= self.leveltable[nextlevel]["exp"]:
-      previousattacknumber = len(self.attack_list)
       io.narr(self.name, "leveled up!", self.name, pronoun, "now level", str(nextlevel) + "!")
       self.exp -= self.leveltable[nextlevel]["exp"]
       self.level += 1
