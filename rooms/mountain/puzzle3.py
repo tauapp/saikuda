@@ -166,7 +166,7 @@ def create(player):
     """
 
     return Room(map, player,
-    enemychance = 0,
+    enemychance = 0.75,
     exits = exits,
     scripts = scripts,
     actions = actions

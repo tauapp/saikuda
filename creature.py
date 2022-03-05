@@ -50,6 +50,8 @@ class Creature(Fightable):
 
   battle = None
 
+  attackSpeed = 0.05
+
   def equipArmor(self, armor):
     self.defense /= self.armor.multiplier
     self.armor = armor
@@ -80,21 +82,23 @@ class Creature(Fightable):
       pronoun = ("You", "your")
     else:
       pronoun = (self.name, "its")
-    choice = io.chooseList("Choose an action", [
+    actions = [
       "Fight",
       "Talk",
       "Defend",
       "Item",
       "Rest",
-      "Switch Creature",
       Fore.YELLOW + "Spare" if self.battle.antag.sparable else "Spare"
-    ])
+    ]
+    if len(self.battle.protag.creatures) > 1:
+      actions.insert(-2, "Switch Creature")
+    choice = io.chooseList("Choose an action", actions)
     if choice == "Fight":
       return self.chooseAttack()
     elif choice == "Talk":
       return self.talk()
     elif choice == "Defend":
-      multiplier = io.slider(self.battle.antag.attack_list[0].speed)
+      multiplier = io.slider(self.attackSpeed)
       if multiplier > 15:
         print(Fore.GREEN + "Perfect block!")
       self.defense *= multiplier

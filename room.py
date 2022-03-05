@@ -3,6 +3,8 @@ from battle import Battle
 import util_io as io
 import random
 from _colorama import Fore, Style
+from copy import deepcopy
+import enemies.mountain.pinko as pinko
 
 class Room:
 
@@ -23,12 +25,27 @@ class Room:
         self.actions = actions
 
     def start(self):
+        if self.enemychance >= random.random():
+            #Create player save
+            save = deepcopy(self.player)
+
+            io.narr(f"{Fore.RED}[!]{Style.RESET_ALL} Something blocked your way!")
+
+            #Generate a creature native to the area
+            area = self.player.state.get("area")
+            if area == "mountain":
+                enemy = pinko.create()
+            if not Battle(self.player, enemy).start():
+                io.narr("Respawning...")
+                io.clear()
+                self.player = save
+                return self.start()
+
         io.clear()
+
         print(self.map + "\n")
         #Run any custom actions provided for the room
         self.scripts(self.player)
-        if self.enemychance >= random.random():
-            pass
         self.choose()
 
     def choose(self):

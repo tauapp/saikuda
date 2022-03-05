@@ -6,6 +6,7 @@ from fightable import Fightable
 from room import Room
 import util_io as io
 import rooms.mountain.puzzle1 as puzzle1
+import enemies.mountain.pinko as pinko
 
 exits = dict()
 
@@ -23,46 +24,8 @@ def scripts(player):
     else:
         io.narr("You look ahead. there seems to be a door in the distance.")
         io.narr("You notice a shadowy figure rapidly approaching.")
-    io.narr("Pinko charges!")
 
-    penguin = Fightable(
-        "Pinko",
-        max_health=50,
-        max_energy = 25,
-        defense = 0,
-        attack = 5,
-        attack_list=[
-            Attack(
-                name="Wing Attack",
-                intensity=3,
-                cost=15,
-                speed=0.05
-            )
-        ],
-        level=0,
-        exp=0,
-        leveltable=[]
-    )
-    penguin.friendship = (0,3)
-    penguin.conversations = [
-        "You complement Pinko on its sleek feathers. It wholeheartedly agrees.",
-        "You asked Pinko why it's fighting. You don't understand a word of what it said.",
-        "You asked Pinko what it likes to do in its free time. You don't understand a word of what it said.",
-    ]
-    penguin.dialogues = [
-        "Pinko stands proudly.",
-        "Pinko looks at you with a blank stare.",
-        "Pinko prepares its next attack.",
-    ]
-
-    penguin.art = """
-        __
-     -=(o '.
-        '.-.\\
-        /|  \\\\
-        '|  ||
-         _\_):,_
-    """
+    penguin = pinko.create()
 
     if not Battle(player, penguin).start():
         io.narr("Respawning...")

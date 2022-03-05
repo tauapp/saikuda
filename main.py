@@ -66,5 +66,8 @@ player = Player(
 
   ]
 )
+
+#Tracks the player's area
+player.state["area"] = "mountain"
 io.clear()
 start.create(player).start()

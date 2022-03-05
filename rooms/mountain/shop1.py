@@ -14,7 +14,7 @@ def scripts(player):
 def buyCandy(player):
     io.dialogue("Sollivan", "You want some candy, huh?")
     io.dialogue("Sollivan", "Haven't had a good customer in a while. I appreciate it, kiddo.")
-    io.dialogue("Sollivan", "Here's the price: 15 Aurum a candy. Take it or leave it.")
+    io.dialogue("Sollivan", "Here's the price: 5 Aurum a candy. Take it or leave it.")
     if io.chooseList("What do you do?", ["Buy candy", "Don't buy some"]) == "Buy candy":
         while True:
             io.dialogue("Sollivan", "How many do you want?\n", waitForInput=False)
@@ -24,12 +24,22 @@ def buyCandy(player):
                 print("That's not a number.")
                 io.clear()
                 continue
-            if int(numtobuy) * 15 > player.aurum:
-                print("You can't afford that many candies.")
+            numtobuy = int(numtobuy)
+            if numtobuy == 0:
+                io.dialogue("Sollivan", "I guess you don't want any.")
                 io.clear()
                 continue
-            player.aurum -= int(numtobuy) * 15
-            for i in range(int(numtobuy)):
+            if numtobuy < 0:
+                io.dialogue("Sollivan", "Whatcha trying to pull?")
+                io.dialogue("Sollivan", "I'm not giving you free money.")
+                io.clear()
+                continue
+            if numtobuy * 5 > player.aurum:
+                io.narr("You don't have enough money.")
+                io.clear()
+                continue
+            player.aurum -= numtobuy * 5
+            for i in range(numtobuy):
                 player.items.append(
                     Item(
                         "Hard Candy",
@@ -39,8 +49,9 @@ def buyCandy(player):
                 )
             if int(numtobuy) == 1:
                 io.narr("[You got a Hard Candy.]")
+                break
             else:
-                io.narr(f"[You got {int(numtobuy)} Hard Candies.]")
+                io.narr(f"[You got {numtobuy} Hard Candies.]")
             break
     else:
         io.dialogue("Sollivan", "Passing up on the opportunity, huh?")

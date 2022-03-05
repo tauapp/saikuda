@@ -56,7 +56,7 @@ def create(player):
         map = map,
         player = player,
         scripts = scripts,
-        enemychance = 0,
+        enemychance = 0.75,
         exits = exits,
         actions=actions
     )
