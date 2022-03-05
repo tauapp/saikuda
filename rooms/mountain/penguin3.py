@@ -1,9 +1,8 @@
 import util_io as io
 from room import Room
-from fightable import Fightable
-from attack import Attack
 from copy import deepcopy
 from battle import Battle
+import enemies.mountain.emperorpinko as emperorpinko
 
 def scripts(player):
     save = deepcopy(player)
@@ -27,70 +26,7 @@ def scripts(player):
         io.dialogue("Emperor Pinko", "THATS IT! You're finished.")
     io.dialogue("Emperor Pinko", "Say goodbye.")
 
-    emperor = Fightable(
-        "Emperor Pinko",
-        max_health=1000,
-        max_energy=1000,
-        defense=50,
-        attack=10,
-        attack_list=[
-            Attack(
-                "Peck",
-                2,
-                50,
-                0.03
-            ),
-            Attack(
-                "Wing Attack",
-                6,
-                100,
-                0.05
-            ),
-            Attack(
-                "Ice Storm",
-                30,
-                950,
-                0.04
-            )
-        ],
-        level=0,
-        exp=0,
-        leveltable=[
-            #TODO: Finish this
-        ]
-    )
-
-    emperor.friendship = (0, 15)
-    emperor.conversations = [
-        "You tell Emperor Pinko that he doesn't need to fight.",
-        "You tell Emperor Pinko that you are innocent.",
-        "You ask Emperor Pinko about why he's fighting you.",
-        "You tell Emperor Pinko that you did nothing wrong."
-    ]
-
-    emperor.dialogues = [
-        #TODO
-        "Among us sussy",
-        "Like the hit game among us",
-        "Ing dong lingus",
-        "Tetris is amingus",
-        "Fling flag fringo",
-        "Indigo",
-        "Rick rick ricko",
-        "Lim li la lo zee zo"
-    ]
-
-    emperor.randomizeDialogue = False
-
-    emperor.art = """
-        __
-     -=(o '.
-        '.-.\\
-        /|  \\\\
-        '|  ||
-         _\_):,_
-    """
-
+    emperor = emperorpinko.create()
     if not Battle(player, emperor).start():
         io.narr("Respawning...")
         io.clear()
