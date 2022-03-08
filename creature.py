@@ -89,7 +89,7 @@ class Creature(Fightable):
       "Rest",
       Fore.YELLOW + "Spare" if self.battle.antag.sparable else "Spare"
     ]
-    if len(self.battle.protag.creatures) > 1:
+    if len(self.battle.protaglist) > 1:
       actions.insert(-2, "Switch Creature")
     choice = io.chooseList("Choose an action", actions)
     if choice == "Fight":
