@@ -35,7 +35,7 @@ you = Creature(
   max_health = 20,
   max_energy = 20,
   defense = 1,
-  attack = 5,
+  attack = 20,
   attack_list = [
     Attack(
       name = "Punch",
@@ -48,14 +48,13 @@ you = Creature(
   exp = 0,
   leveltable = [
     dict(),
-    {"exp": 10, "energy": 5, "defense": 5, "attack": 2, "health": 5},
-    {"exp": 25, "energy": 7, "defense": 7, "attack": 5, "health": 7},
-    {"exp": 75, "energy": 15, "defense": 15, "attack": 15, "health": 15},
-    {"exp": 150, "energy": 20, "defense": 20, "attack": 20, "health": 20},
-    {"exp": 250, "energy": 30, "defense": 30, "attack": 30, "health": 30},
-    {"exp": 400, "energy": 50, "defense": 50, "attack": 50, "health": 50},
-    {"exp": 600, "energy": 80, "defense": 80, "attack": 80, "health": 80},
-    {"exp": 900, "energy": 100, "defense": 100, "attack": 100, "health": 100},
+    {"exp": 25, "energy": 5, "defense": 5, "attack": 2, "health": 5},
+    {"exp": 75, "energy": 5, "defense": 5, "attack": 2, "health": 5},
+    {"exp": 150, "energy": 6, "defense": 6, "attack": 3, "health": 6},
+    {"exp": 250, "energy": 6, "defense": 6, "attack": 3, "health": 6},
+    {"exp": 400, "energy": 7, "defense": 7, "attack": 4, "health": 7},
+    {"exp": 600, "energy": 7, "defense": 7, "attack": 4, "health": 7},
+    {"exp": 900, "energy": 8, "defense": 8, "attack": 5, "health": 8},
   ]
 )
 

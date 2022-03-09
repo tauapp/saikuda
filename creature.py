@@ -97,6 +97,13 @@ class Creature(Fightable):
     elif choice == "Talk":
       return self.talk()
     elif choice == "Defend":
+      cost = self.max_energy * 0.2
+      if self.max_energy >= cost:
+        io.say("You channel your energy and try to block the attack.")
+        self.energy -= cost
+      else:
+        io.say("You tried to channel your energy, but it failed!")
+        return (False, 0)
       multiplier = io.slider(self.attackSpeed)
       if multiplier > 15:
         print(Fore.GREEN + "Perfect block!")

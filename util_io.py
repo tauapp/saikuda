@@ -130,9 +130,9 @@ def slider(interval):
   elif getcolor(pos) == term.green:
     increaser = 1
   else:
-    increaser = 3
+    increaser = 2
     
-  multiplier = max((26 - accuracy) * increaser, 0)/5
+  multiplier = max((26 - accuracy) * increaser, 0)/20
   return multiplier
 
 def clear():

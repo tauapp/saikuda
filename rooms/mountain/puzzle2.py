@@ -20,7 +20,7 @@ def approachHale(player):
     pickupwrench = io.chooseList("Pick it up?", ["Yes", "No"])
     if pickupwrench == "Yes":
         io.narr("You pick up the wrench, grasping it firmly.")
-        player.creatures[0].equipWeapon(Weapon("Wrench", 1.5))
+        player.creatures[0].equipWeapon(Weapon("Wrench", 1.1))
     else:
         io.narr("You decide to leave the wrench behind.")
 
