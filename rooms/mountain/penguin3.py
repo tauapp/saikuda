@@ -3,6 +3,7 @@ from room import Room
 from copy import deepcopy
 from battle import Battle
 import enemies.mountain.emperorpinko as emperorpinko
+from save import saveToFile
 
 def scripts(player):
     save = deepcopy(player)
@@ -48,5 +49,9 @@ def create(player):
     |_ = Wall
     """
 
-    return Room(map, player, 
+    room =  Room(map, player, 
     scripts = scripts)
+
+    saveToFile(room)
+
+    return room

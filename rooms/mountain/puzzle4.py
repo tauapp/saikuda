@@ -12,8 +12,8 @@ def scripts(player):
     io.narr("There's a stove, a sign, and a random pile of leaves.")
 
 def readSign(player):
+    io.dialogue("Sign", "You can find the wood inside what grows from the wood.")
     io.dialogue("Sign", "Use the wood to destroy the wood.")
-    io.dialogue("Sign", "A certain junk grows from the wood. Inside the junk you can find the wood.")
 
 def lookAtDoor(player):
     global exits
@@ -58,7 +58,6 @@ def lookAtStove(player):
     elif choice == "Light stick on fire":
         io.narr("You jab the end of the stick into the flames.")
         io.narr("You are effectively holding a flaming torch.")
-        io.narr("Don't burn your hands off. You didn't pay your health insurance premiums last month.")
         player.state["holdingStick"] = 2
     else:
         io.narr("You leave the stove alone.")

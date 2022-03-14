@@ -20,20 +20,22 @@ def buyCandy(player):
             io.dialogue("Sollivan", "How many do you want?\n", waitForInput=False)
             print(f"(You have {player.aurum} Aurum.)")
             numtobuy = io.ask("How many candies would you like to buy?")
+
+            #Checks if numtobuy is negative
+            if numtobuy.strip()[0] == "-":
+                io.dialogue("Sollivan", "Whatcha trying to pull?")
+                io.dialogue("Sollivan", "I'm not giving you free money.")
+                io.clear()
+                continue
             if not numtobuy.isdigit():
-                print("That's not a number.")
+                io.narr("That's not a number.")
                 io.clear()
                 continue
             numtobuy = int(numtobuy)
             if numtobuy == 0:
                 io.dialogue("Sollivan", "I guess you don't want any.")
                 io.clear()
-                continue
-            if numtobuy < 0:
-                io.dialogue("Sollivan", "Whatcha trying to pull?")
-                io.dialogue("Sollivan", "I'm not giving you free money.")
-                io.clear()
-                continue
+                break
             if numtobuy * 5 > player.aurum:
                 io.narr("You don't have enough money.")
                 io.clear()
@@ -83,7 +85,11 @@ def talk(player):
         io.dialogue("Sollivan", "It's all I have left now.")
 
 def leave(player):
-    io.dialogue("Sollivan", "See you around.")
+    io.dialogue("Sollivan", "Thanks for taking the time to talk to me.")
+    io.dialogue("Sollivan", "Let me heal you up.")
+    player.creatures[0].health = player.creatures[0].max_health
+    player.creatures[0].energy = player.creatures[0].max_energy
+    io.narr("Your health and energy was restored.")
     return penguin3.create(player).start()
 
 actions = [

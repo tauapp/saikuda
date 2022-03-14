@@ -7,8 +7,8 @@ def create():
             "Emperor Pinko",
             max_health=1000,
             max_energy=1000,
-            defense=50,
-            attack=10,
+            defense=0,
+            attack=1,
             attack_list=[
                 Attack(
                     "Peck",
@@ -24,7 +24,7 @@ def create():
                 ),
                 Attack(
                     "Ice Storm",
-                    30,
+                    15,
                     950,
                     0.04
                 )

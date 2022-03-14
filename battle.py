@@ -34,6 +34,13 @@ class Battle:
         self.protag.report()
         while True:
             choice = self.protag.chooseAction()
+            if choice == "CLEAR":
+                io.clear()
+                print(self.antag.art) if self.antag.art != "" else None
+                self.antag.enemy_report()
+                print("")
+                self.protag.report()
+                continue
             if choice[0] == 2:
                 self.setProtag()
                 return self.start()
@@ -63,7 +70,9 @@ class Battle:
                 self.antag.health = 0
                 break
             print("")
-            choice = self.antag.chooseRandomAction()
+
+            #Runs the AI engine to decide an attack
+            choice = self.antag.ai_engine()
             dmg = (choice[0], max(0, choice[1]))
             if dmg[0]:
                 io.say("It did " + Fore.RED + str(max(int(dmg[1] - self.protag.defense), 0)) + Style.RESET_ALL + " damage!")
@@ -71,6 +80,8 @@ class Battle:
             if self.protag.health <= 0:
                 self.protag.health = 0
                 break
+
+            io.narr("Press Enter to continue.")
             io.clear()
             print(self.antag.art) if self.antag.art != "" else None
             print("\n")

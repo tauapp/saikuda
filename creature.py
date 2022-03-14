@@ -113,8 +113,9 @@ class Creature(Fightable):
     elif choice == "Item":
       if len(self.items) == 0:
         io.say("You don't have any items!")
-        return self.chooseAction()
-      self.chooseItem()
+        return "CLEAR"
+      if self.chooseItem() == "CLEAR":
+        return "CLEAR"
       return (False, 0)
     elif choice == "Rest":
       self.energy += (self.max_energy * 0.2)
@@ -168,7 +169,7 @@ class Creature(Fightable):
     choices.insert(0, "Back")
     choice = io.chooseList("Choose an item", choices)
     if choice == "Back":
-      return self.chooseAction()
+      return "CLEAR"
     choice = lookup.index(" ".join(choice.split(" ")[:-1]))
     item = self.items[choice]
     self.health += item.health
@@ -187,8 +188,8 @@ class Creature(Fightable):
       for x in self.attack_list
     ]
     choices.insert(0, "Back")
-    choice = io.chooseList("Choose an item", choices)
+    choice = io.chooseList("Choose an attack", choices)
     if choice == "Back":
-      return self.chooseAction()
+      return "CLEAR"
     choice = lookup.index(" ".join(choice.split(" ")[:-1]))
     return self.attack(choice)

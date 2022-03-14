@@ -2,6 +2,7 @@ import util_io as io
 from _colorama import Fore, Style
 import random
 from typing import List, Dict
+from ai_engines.randomize import chooseRandomAction
 
 class Fightable:
 
@@ -38,7 +39,7 @@ class Fightable:
 
     dialogueNumber = 0
 
-    cdialogues = []
+    dialogues = []
 
     def chooseDialogue(self):
       if self.randomizeDialogue:
@@ -64,21 +65,7 @@ class Fightable:
       io.say(self.name, "used", Fore.GREEN + att.name + Style.RESET_ALL + "!")
       return (True, att.intensity * self.attack_str, att.speed)
 
-    def chooseRandomAction(self):
-      if self.sparable:
-        return (False, 0)
-      #Formatting
-      HEALTH = Fore.RED + "HEALTH" + Style.RESET_ALL
-      ENERGY = Fore.BLUE + "ENERGY" + Style.RESET_ALL
-      DEFENSE = Fore.GREEN + "DEFENSE" + Style.RESET_ALL
-      att = random.randint(0, len(self.attack_list) - 1)
-      cost = self.attack_list[att].cost
-      if cost > self.energy:
-        self.energy += (self.max_energy * 0.2)
-        self.energy = min(round(self.energy), self.max_energy)
-        io.say(self.name + " rested and recovered 20% of its", ENERGY + "!")
-        return (False, 0)
-      return self.attack(att)
+    ai_engine = chooseRandomAction
 
     def enemy_report(self):
       io.progressBar('Enemy HP',

@@ -61,7 +61,7 @@ def narr(*args):
 
 def ask(question) -> str:
     answer = input(f"[{Fore.YELLOW}?{Style.RESET_ALL}] {question}: ")
-    if bool(answer.strip()) == False:
+    if answer.strip() == "":
         return ask(question)
     return answer
 
