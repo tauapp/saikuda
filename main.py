@@ -27,13 +27,7 @@ import pickle
 init(autoreset = True)
 io.clear()
 
-#Checks if a save file already exists. If it does, load it.
-if os.path.isfile("saves/save.pickle"):
-  savefile = pickle.load(open("saves/save.pickle", "rb"))
-  io.say("Loading from save file...")
-  io.narr("Welcome back to Saikuda!")
-  savefile.start()
-else:
+def createNewGame():
   io.clear()
   io.say(Fore.GREEN + Style.BRIGHT  + "Welcome To Saikuda!")
   io.narr("When you see a sentence starting with " + Fore.GREEN + Style.BRIGHT + "~" + Style.RESET_ALL + ", press Enter to continue.")
@@ -80,3 +74,24 @@ else:
   #Tracks the player's area
   player.state["area"] = "mountain"
   start.create(player).start()
+
+#Checks if a save file already exists. If it does, load it.
+def main():
+  if os.path.isfile("saves/save.pickle"):
+    try:
+      savefile = pickle.load(open("saves/save.pickle", "rb"))
+    except:
+      io.say("It seems like the save file is corrupted.")
+      io.say("Starting a new game...")
+      return createNewGame()
+
+    io.say("Loading from save file...")
+    io.narr("Welcome back to Saikuda!")
+    return savefile.start()
+    
+  else:
+    return createNewGame()
+
+main()
+
+

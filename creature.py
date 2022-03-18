@@ -28,18 +28,23 @@ class Creature(Fightable):
     if self.name == "You":
       pronoun = "are"
     self.exp += exp
-    io.narr(self.name, "gained", exp, "EXP and", money, "aurum!")
-    level = self.level
-    nextlevel = level + 1
     player.aurum += money
-    if self.exp >= self.leveltable[nextlevel]["exp"]:
-      io.narr(self.name, "leveled up!", self.name, pronoun, "now level", str(nextlevel) + "!")
-      self.exp -= self.leveltable[nextlevel]["exp"]
-      self.level += 1
-      self.max_health += self.leveltable[nextlevel]["health"]
-      self.max_energy += self.leveltable[nextlevel]["energy"]
-      self.attack_str += self.leveltable[nextlevel]["attack"]
-      self.defense += self.leveltable[nextlevel]["defense"]
+    io.narr(self.name, "gained", exp, "EXP and", money, "aurum!")
+    #Continues to level up until there is no more EXP to gain
+    while True:
+      level = self.level
+      nextlevel = level + 1
+      if self.exp >= self.leveltable[nextlevel]["exp"]:
+        io.narr(self.name, "leveled up!", self.name, pronoun, "now level", str(nextlevel) + "!")
+        self.exp -= self.leveltable[nextlevel]["exp"]
+        self.level += 1
+        self.max_health += self.leveltable[nextlevel]["health"]
+        self.max_energy += self.leveltable[nextlevel]["energy"]
+        self.attack_str += self.leveltable[nextlevel]["attack"]
+        self.defense += self.leveltable[nextlevel]["defense"]
+        continue
+      else:
+        break
 
   reduceDefense = False
 
@@ -107,8 +112,8 @@ class Creature(Fightable):
       multiplier = io.slider(self.attackSpeed)
       if multiplier > 15:
         print(Fore.GREEN + "Perfect block!")
-      self.defense *= multiplier
-      self.reduceDefense = multiplier
+      self.defense *= multiplier * 2
+      self.reduceDefense = multiplier * 2
       return (False, 0)
     elif choice == "Item":
       if len(self.items) == 0:
@@ -133,7 +138,6 @@ class Creature(Fightable):
     enemy: Fightable = self.battle.antag
     complement = random.choice(enemy.conversations)
     io.say(complement)
-    time.sleep(1)
     if enemy.sparable:
       return (False, 0)
     reqpercent = float(enemy.friendship[0]) / float(enemy.friendship[1])

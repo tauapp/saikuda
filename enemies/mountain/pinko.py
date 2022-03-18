@@ -41,4 +41,6 @@ def create():
             _\_):,_
         """
     
+    pinko.reward = (25, 10)
+
     return pinko

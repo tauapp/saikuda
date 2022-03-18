@@ -11,6 +11,7 @@ plan = []
 
 # A very simple attack AI that will look three steps ahead and try to maximize damage.
 def lookThreeAhead(self: Fightable):
+    global plan
     if self.sparable:
         return (False, 0)
     #Formatting
@@ -75,7 +76,7 @@ def lookThreeAhead(self: Fightable):
         plan = []
         for action in best_plan:
             if action != "rest":
-                id = attack_list.find(action)
+                id = attack_list.index(action)
                 plan.append(id)
             else:
                 plan.append(action)

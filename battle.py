@@ -72,7 +72,7 @@ class Battle:
             print("")
 
             #Runs the AI engine to decide an attack
-            choice = self.antag.ai_engine()
+            choice = self.antag.ai_engine(self.antag)
             dmg = (choice[0], max(0, choice[1]))
             if dmg[0]:
                 io.say("It did " + Fore.RED + str(max(int(dmg[1] - self.protag.defense), 0)) + Style.RESET_ALL + " damage!")
@@ -94,7 +94,7 @@ class Battle:
             print("")
             self.antag.enemy_report()
             io.narr(Fore.GREEN +"You win!")
-            self.protag.reward(self.player, exp = self.antag.max_energy, money = round(self.antag.max_health / 5))
+            self.protag.reward(self.player, exp = self.antag.reward[0], money = self.antag.reward[1])
             io.clear()
             return True
         else:

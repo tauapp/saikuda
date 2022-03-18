@@ -1,31 +1,32 @@
 from attack import Attack
 from fightable import Fightable
+import ai_engines.three_ahead as engine
 
 
 def create():
     emperor = Fightable(
             "Emperor Pinko",
-            max_health=1000,
-            max_energy=1000,
+            max_health=250,
+            max_energy=100,
             defense=0,
-            attack=1,
+            attack=2,
             attack_list=[
                 Attack(
                     "Peck",
                     2,
-                    50,
+                    4,
                     0.03
                 ),
                 Attack(
                     "Wing Attack",
-                    6,
-                    100,
+                    5,
+                    40,
                     0.05
                 ),
                 Attack(
                     "Ice Storm",
-                    15,
-                    950,
+                    13,
+                    100,
                     0.04
                 )
             ],
@@ -36,7 +37,9 @@ def create():
             ]
     )
 
-    emperor.friendship = (0, 15)
+    emperor.ai_engine = engine.lookThreeAhead
+
+    emperor.friendship = (0, 10)
     emperor.conversations = [
         "You tell Emperor Pinko that he doesn't need to fight.",
         "You tell Emperor Pinko that you are innocent.",
@@ -69,4 +72,7 @@ def create():
         '|  ||
         _\_):,_
     """
+
+    emperor.reward = (100, 100)
+
     return emperor

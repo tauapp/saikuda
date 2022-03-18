@@ -74,6 +74,9 @@ class Fightable:
       color_inner = Fore.GREEN,
     )
 
+    #EXP and Aurum rewards
+    reward = (0, 0)
+
     def __init__(self, name, max_health, max_energy, defense, attack, attack_list, level, exp, leveltable: List[Dict[str, int]]):
         self.name = name
         self.health = max_health
