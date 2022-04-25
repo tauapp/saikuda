@@ -24,4 +24,3 @@ To update Saikuda, run `sh update.sh` in the `saikuda` directory.
 For speed of development, several shortcuts have been taken. These shortcuts will be removed when the Demo releases. These shortcuts are:
 * All artwork and environments has been temporarily replaced with ASCII art and text maps
 * There is no music or sound effects (May or may not be added in the release)
-* There is no saving (will be added in in future via Python class pickling)
