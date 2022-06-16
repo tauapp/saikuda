@@ -10,7 +10,7 @@ plan = []
 
 
 # A very simple attack AI that will look three steps ahead and try to maximize damage.
-def lookThreeAhead(self: Fightable):
+def lookThreeAhead(self: Fightable, _antag):
     global plan
     if self.sparable:
         return (False, 0)
@@ -80,4 +80,4 @@ def lookThreeAhead(self: Fightable):
                 plan.append(id)
             else:
                 plan.append(action)
-        return lookThreeAhead(self)
+        return lookThreeAhead(self, None)

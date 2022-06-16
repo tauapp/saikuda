@@ -2,7 +2,7 @@ from _colorama import Fore, Style
 import random
 import util_io as io
 
-def chooseRandomAction(self):
+def chooseRandomAction(self, _antag):
       if self.sparable:
         return (False, 0)
       #Formatting
